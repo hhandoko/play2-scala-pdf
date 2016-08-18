@@ -228,23 +228,22 @@ project/boot/
 
 ### PlayFramework ###
 # Ignore Play! working directory #
-/db
+db/
 .eclipse
-/lib/
-/logs/
-/modules
-/project/project
-/project/target
-/target
+lib/
+logs/
+modules/
+project/project/
+project/target/
+target/
 tmp/
 test-result
 server.pid
 *.iml
 *.eml
-/dist/
-.cache
+dist/
+.cache/
 
 
 ### Others ###
-/RUNNING_PID
-.sass-cache
+RUNNING_PID

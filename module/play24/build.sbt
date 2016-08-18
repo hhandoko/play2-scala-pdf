@@ -26,14 +26,28 @@
  */
 name := """play2-scala-pdf"""
 
-version := "1.0-SNAPSHOT"
-
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
+version := "1.5.1"
 
 scalaVersion := "2.11.8"
 
 libraryDependencies ++= Seq(
+  // Apache Commons IO
+  //   - https://commons.apache.org/proper/commons-io/
+  "commons-io" % "commons-io" % "2.5",
+
+  // HTML parsing + PDF generation
+  //   - http://jtidy.sourceforge.net/
+  //   - https://code.google.com/archive/p/flying-saucer/
+  //   - https://about.validator.nu/htmlparser/
+  "net.sf.jtidy" % "jtidy" % "r938",
+  "org.xhtmlrenderer" % "flying-saucer-pdf" % "9.0.9",
+  "nu.validator.htmlparser" % "htmlparser" % "1.4",
+
+  // ScalaTest + Play plugin
+  //   - http://www.scalatest.org/plus/play
   "org.scalatestplus" %% "play" % "1.4.0" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+
+lazy val play24 = (project in file(".")).enablePlugins(PlayScala)
