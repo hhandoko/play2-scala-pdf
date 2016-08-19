@@ -1,5 +1,5 @@
 /**
- * File     : ApplicationSpec.scala
+ * File     : example.css
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,13 +24,4 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-import org.scalatestplus.play._
-
-import play.api.test.Helpers._
-import play.api.test._
-
-class ApplicationSpec extends PlaySpec with OneAppPerTest {
-
-  // TODO: Write application spec
-
-}
+body { background-color: red; }
