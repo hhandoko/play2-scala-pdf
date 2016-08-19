@@ -46,12 +46,12 @@ import play.twirl.api.Html
 /**
  * PDF generator service.
  *
- * @param tidy true to use HTML tidy checker / prettyprinter.
+ * @param xhtml true to set XHTML strict parsing (i.e. leave disabled for HTML5 templates).
  */
 @Singleton
-class PdfGenerator(val tidy: Boolean = true) {
+class PdfGenerator(val xhtml: Boolean = false) {
 
-  /** HTML tidy checker / prettyprinter instance */
+  /** HTML tidy checker / prettyprinter instance for XHTML strict parsing */
   private lazy val tidyParser = {
     val t = new Tidy()
     t.setXHTML(true)
@@ -181,7 +181,7 @@ class PdfGenerator(val tidy: Boolean = true) {
    * @return HTML as string.
    */
   def parseString(html: Html): String = {
-    if (tidy) {
+    if (xhtml) {
       val reader = new StringReader(html.body)
       val writer = new StringWriter()
       tidyParser.parse(reader, writer)

@@ -82,6 +82,10 @@ Please read [CONTRIBUTING] for more details.
 
 `play2-scala-pdf` is released under the MIT license. See the [LICENSE] file for further details.
 
+`Open Sans` font by [Steve Matteson] is released under the Apache 2 license. See the [Open Sans Google Fonts] page for further details.
+
+`Play Framework` logo is a trademark of [Lightbend].
+
 ## Releases
 
 https://github.com/builtamont/play2-scala-pdf/releases
@@ -90,3 +94,6 @@ https://github.com/builtamont/play2-scala-pdf/releases
 [Flying Saucer library]: https://github.com/flyingsaucerproject/flyingsaucer
 [fork-and-pull]: https://help.github.com/articles/using-pull-requests
 [LICENSE]: LICENSE
+[Lightbend]: https://www.lightbend.com/company
+[Open Sans font license]: https://fonts.google.com/specimen/Open+Sans
+[Steve Matteson]: https://twitter.com/@SteveMatteson1

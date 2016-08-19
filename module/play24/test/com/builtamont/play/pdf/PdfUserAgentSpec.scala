@@ -45,7 +45,7 @@ class PdfUserAgentSpec extends PlaySpec with OneAppPerTest {
   "PdfUserAgent" should {
 
     "be able to load image resource" in {
-      val image = userAgent.getImageResource("scala_logo.png")
+      val image = userAgent.getImageResource("play_logo.png")
 
       assert(image.isInstanceOf[ImageResource])
     }
@@ -67,10 +67,10 @@ class PdfUserAgentSpec extends PlaySpec with OneAppPerTest {
     }
 
     "be able to load binary resource" in {
-      val file = userAgent.getBinaryResource("scala_logo.png")
+      val file = userAgent.getBinaryResource("play_logo.png")
 
       assert(file.isInstanceOf[Array[Byte]])
-      assert(file.length === 3080)
+      assert(file.length === 20039)
     }
 
   }
