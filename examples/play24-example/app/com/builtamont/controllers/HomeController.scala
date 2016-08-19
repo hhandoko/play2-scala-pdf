@@ -28,6 +28,7 @@ package com.builtamont.controllers
 
 import javax.inject._
 
+import play.api.Configuration
 import play.api.mvc._
 
 import com.builtamont.play.pdf.PdfGenerator
@@ -35,18 +36,33 @@ import com.builtamont.play.pdf.PdfGenerator
 /**
  * Home controller.
  *
+ * @param config the application configuration
  * @param pdfGen the PDF generator implementation.
  */
 @Singleton
-class HomeController @Inject() (pdfGen: PdfGenerator) extends Controller {
+class HomeController @Inject() (config: Configuration, pdfGen: PdfGenerator) extends Controller {
+
+  val BASE_URL = config.getString("application.base_url").getOrElse("http://localhost:9000")
 
   /**
    * Returns the homepage ('/').
    *
    * @return Homepage.
    */
-  def index = Action {
-    Ok(views.html.index())
-  }
+  def index = Action { Ok(views.html.index()) }
+
+  /**
+   * Returns the example page as HTML ('/example').
+   *
+   * @return Example page.
+   */
+  def exampleHtml = Action { Ok(views.html.example() )}
+
+  /**
+   * Returns the example page as PDF document ('/example.pdf').
+   *
+   * @return Example page as PDF.
+   */
+  def examplePdf = Action { pdfGen.ok(views.html.example(), BASE_URL) }
 
 }
