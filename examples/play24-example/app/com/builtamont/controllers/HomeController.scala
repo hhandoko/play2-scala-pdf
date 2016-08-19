@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : HomeController.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,29 +24,29 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
+package com.builtamont.controllers
 
-version := "1.0.0"
+import javax.inject._
 
-scalaVersion := "2.11.8"
+import play.api.mvc._
 
-libraryDependencies ++= Seq(
-  // Utilities
-  "net.codingwell" %% "scala-guice" % "4.0.0",
+import com.builtamont.play.pdf.PdfGenerator
 
-  // WebJars
-  "org.webjars.bower" % "jquery" % "1.12.4",
-  "org.webjars.bower" % "bootstrap" % "3.3.7",
+/**
+ * Home controller.
+ *
+ * @param pdfGen the PDF generator implementation.
+ */
+@Singleton
+class HomeController @Inject() (pdfGen: PdfGenerator) extends Controller {
 
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus" %% "play" % "1.4.0" % Test
-)
+  /**
+   * Returns the homepage ('/').
+   *
+   * @return Homepage.
+   */
+  def index = Action {
+    Ok(views.html.index())
+  }
 
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-routesGenerator := InjectedRoutesGenerator
-
-lazy val play24 = RootProject(file("../../module/play24"))
-
-lazy val play24Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play24)
+}
