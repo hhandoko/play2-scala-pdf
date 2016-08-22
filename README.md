@@ -1,4 +1,4 @@
-# Play 2.5+ PDF module
+# Play 2.4 PDF module
 
 `play2-scala-pdf` is a Play! module to help generate PDF documents dynamically from Play! web application.
 
@@ -92,5 +92,5 @@ https://github.com/builtamont/play2-scala-pdf/releases
 [fork-and-pull]: https://help.github.com/articles/using-pull-requests
 [LICENSE]: LICENSE
 [Lightbend]: https://www.lightbend.com/company
-[Open Sans font license]: https://fonts.google.com/specimen/Open+Sans
+[Open Sans Google Fonts]: https://fonts.google.com/specimen/Open+Sans
 [Steve Matteson]: https://twitter.com/@SteveMatteson1
