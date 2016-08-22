@@ -12,7 +12,7 @@ Currently, the module is hosted at Maven Central Repository. Include the followi
 ``` scala
 libraryDependencies ++= Seq(
   ...
-  "it.innove" % "play2-pdf" % "1.5.1"
+  "com.builtamont" % "play2-scala-pdf" % "1.5.1"
 )
 ```
 
@@ -24,35 +24,32 @@ You can use a standard Play! Scala template like this one:
 ``` html
 @(message: String)
 
-@main("Welcome to Play 2.0") {
+@main("Example Page") {
     Image: <img src="/public/images/favicon.png"/><br/>
     Hello world! <br/>
     @message <br/>
 }
 ```
 
-Then this template, after having imported ```it.innove.PdfGenerator```, can simply be rendered as:
-``` java
-
-	@Inject
-	public PdfGenerator pdfGenerator;
-	
-	public Result document() {
-		return pdfGenerator.ok(document.render("Your new application is ready."), "http://localhost:9000");
-	}
+Then this template, after having imported ```com.builtamont.play.pdf.PdfGenerator```, can simply be rendered as:
+``` scala
+class HomeController @Inject() (pdfGen: PdfGenerator) extends Controller {
+    
+    def examplePdf = Action { pdfGen.ok(views.html.example(), "http://localhost:9000") }
+    
+}
 ```
 
 where ```pdfGenerator.ok``` is a simple shorthand notation for:
-``` java
-	ok(pdfGenerator.toBytes(document.render("Your new application is ready."), "http://localhost:9000")).as("application/pdf")
+``` scala
+ok(pdfGenerator.toBytes(document.render("Your new application is ready."), "http://localhost:9000")).as("application/pdf")
 ```
 
 ## Template rules
 
-There are a number of constraints to avoid issues in using this module:
+Please observe the following constraints to avoid issues when using this module:
 
-  - Templates must generate valid XHTML
-  - Linked CSS in `<head>` must not use `media="screen"` qualifier
+  - Avoid using `media="screen"` qualifier on linked CSS in `<head>`, otherwise you must provide specific print stylesheets (i.e. `media="print"`)
   - Non-system fonts must be loaded explicitly (see below for example)
 
 External assets such as images and stylesheets will be loaded via HTTP calls (as per normal HTML page load). However, if the specified URI is a path into Play! app classpath, the resource is loaded directly instead. See the above sample template for an example.
@@ -60,7 +57,7 @@ External assets such as images and stylesheets will be loaded via HTTP calls (as
 Fonts can be loaded by invoking `PdfGenerator.loadLocalFonts` method. For example:
 
   - if fonts are stored under `/conf/fonts` (or other project path mapped to the classpath),
-  - it can be loaded by invoking `pdfGenerator.loadLocalFonts(new String[]{"fonts/FreeSans.ttf"})`
+  - it can be loaded by invoking `pdfGenerator.loadLocalFonts(Seq("fonts/FreeSans.ttf"))`
 
 *NOTE: Non-system fonts in this context refers to WebFonts, fonts not available to the Java VM, or other fonts not included as part of normal OS distribution*
 
@@ -82,6 +79,10 @@ Please read [CONTRIBUTING] for more details.
 
 `play2-scala-pdf` is released under the MIT license. See the [LICENSE] file for further details.
 
+`Open Sans` font by [Steve Matteson] is released under the Apache 2 license. See the [Open Sans Google Fonts] page for further details.
+
+`Play Framework` logo is a trademark of [Lightbend].
+
 ## Releases
 
 https://github.com/builtamont/play2-scala-pdf/releases
@@ -90,3 +91,6 @@ https://github.com/builtamont/play2-scala-pdf/releases
 [Flying Saucer library]: https://github.com/flyingsaucerproject/flyingsaucer
 [fork-and-pull]: https://help.github.com/articles/using-pull-requests
 [LICENSE]: LICENSE
+[Lightbend]: https://www.lightbend.com/company
+[Open Sans font license]: https://fonts.google.com/specimen/Open+Sans
+[Steve Matteson]: https://twitter.com/@SteveMatteson1
