@@ -28,6 +28,8 @@ publishMavenStyle := true
 
 pomIncludeRepository := { _ => false }
 
+sonatypeProfileName := "com.builtamont"
+
 publishTo := {
   val nexus = "https://oss.sonatype.org/"
   if (isSnapshot.value)
@@ -36,7 +38,7 @@ publishTo := {
     Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
 
-pomExtra := (
+pomExtra in Global := (
   <url>https://github.com/builtamont-oss/play2-scala-pdf</url>
   <licenses>
     <license>

@@ -8,4 +8,4 @@ env:
   matrix:
     - MODULE_DIR=module/play24
 script: cd $MODULE_DIR && ./bin/activator clean update compile test
-after_success: ./bin/activator publish
+after_success: test $TRAVIS_BRANCH "master" && ./bin/activator publish
