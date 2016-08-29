@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : sonatype.sbt
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,32 +24,7 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf"""
-
-organization := "com.builtamont"
-
-version := "1.5.1-SNAPSHOT"
-
-scalaVersion := "2.11.8"
-
-libraryDependencies ++= Seq(
-  // Apache Commons IO
-  //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.5",
-
-  // HTML parsing + PDF generation
-  //   - http://jtidy.sourceforge.net/
-  //   - https://code.google.com/archive/p/flying-saucer/
-  //   - https://about.validator.nu/htmlparser/
-  "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf" % "9.0.9",
-  "nu.validator.htmlparser" % "htmlparser" % "1.4",
-
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus" %% "play" % "1.4.0" % Test
-)
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-lazy val play24 = (project in file(".")).enablePlugins(PlayScala)
+credentials ++= (for {
+  username <- Option(System.getenv().get("SONATYPE_USERNAME"))
+  password <- Option(System.getenv().get("SONATYPE_PASSWORD"))
+} yield Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", username, password)).toSeq
