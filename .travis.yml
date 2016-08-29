@@ -1,0 +1,6 @@
+language: scala
+jdk: oraclejdk8
+scala: 2.11.8
+env:
+  - MODULE_DIR=module/play24
+script: cd $MODULE_DIR && activator clean update compile test
