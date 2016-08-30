@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE) [![Master Build Status](https://travis-ci.org/builtamont-oss/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/builtamont-oss/play2-scala-pdf)
+
 # Play 2.4 PDF module
 
 `play2-scala-pdf` is a Play! module to help generate PDF documents dynamically from Play! web application.

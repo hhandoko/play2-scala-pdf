@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : publish.sbt
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,32 +24,38 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf"""
+publishMavenStyle := true
 
-organization := "com.builtamont"
+pomIncludeRepository := { _ => false }
 
-version := "1.5.1.1-SNAPSHOT"
+sonatypeProfileName := "com.builtamont"
 
-scalaVersion := "2.11.8"
+publishTo := {
+  val nexus = "https://oss.sonatype.org/"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
 
-libraryDependencies ++= Seq(
-  // Apache Commons IO
-  //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.5",
-
-  // HTML parsing + PDF generation
-  //   - http://jtidy.sourceforge.net/
-  //   - https://code.google.com/archive/p/flying-saucer/
-  //   - https://about.validator.nu/htmlparser/
-  "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf" % "9.0.9",
-  "nu.validator.htmlparser" % "htmlparser" % "1.4",
-
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus" %% "play" % "1.4.0" % Test
+pomExtra in Global := (
+  <url>https://github.com/builtamont-oss/play2-scala-pdf</url>
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://raw.githubusercontent.com/builtamont-oss/play2-scala-pdf/master/LICENSE</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>git@github.com:builtamont-oss/play2-scala-pdf.git</url>
+    <connection>scm:git:git@github.com:builtamont-oss/play2-scala-pdf.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>hhandoko</id>
+      <name>Herdy Handoko</name>
+      <url>http://github.com/hhandoko</url>
+    </developer>
+  </developers>
 )
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-lazy val play24 = (project in file(".")).enablePlugins(PlayScala)
