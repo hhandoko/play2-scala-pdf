@@ -14,7 +14,7 @@ Currently, the module is hosted at Maven Central Repository. Include the followi
 ``` scala
 libraryDependencies ++= Seq(
   ...
-  "com.builtamont" % "play2-scala-pdf" % "1.5.1"
+  "com.builtamont" % "play2-scala-pdf" % "1.5.1.1"
 )
 ```
 
