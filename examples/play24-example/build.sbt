@@ -47,6 +47,6 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 routesGenerator := InjectedRoutesGenerator
 
-lazy val play24 = RootProject(file("../../module/play24"))
+lazy val play24 = RootProject(file("../../modules/play24"))
 
 lazy val play24Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play24)
