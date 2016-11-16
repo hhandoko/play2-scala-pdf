@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE) [![Master Build Status](https://travis-ci.org/builtamont-oss/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/builtamont-oss/play2-scala-pdf)
 
-# Play 2.4 PDF module
+# Play 2.4+ PDF module
 
 `play2-scala-pdf` is a Play! module to help generate PDF documents dynamically from Play! web application.
 
@@ -14,7 +14,14 @@ Currently, the module is hosted at Maven Central Repository. Include the followi
 ``` scala
 libraryDependencies ++= Seq(
   ...
-  "com.builtamont" % "play2-scala-pdf" % "1.5.1.2"
+  "com.builtamont" % "play2-scala-pdf" % "1.6.0.P25-SNAPSHOT" // Or `1.6.0.P24-SNAPSHOT` for Play 2.4.x apps
+)
+```
+
+Remember to add Sonatype snapshots repository to use snapshot releases:
+``` scala
+resolvers ++= Seq(
+  Resolver.sonatypeRepo("snapshots")
 )
 ```
 
