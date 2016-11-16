@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : IntegrationSpec.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,29 +24,10 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
+import org.scalatestplus.play._
 
-version := "1.0.0.P24"
+class IntegrationSpec extends PlaySpec with OneServerPerTest with OneBrowserPerTest with HtmlUnitFactory {
 
-scalaVersion := "2.11.8"
+  // TODO: Write integration spec
 
-libraryDependencies ++= Seq(
-  // Utilities
-  "net.codingwell" %% "scala-guice" % "4.0.0",
-
-  // WebJars
-  "org.webjars.bower" % "jquery" % "1.12.4",
-  "org.webjars.bower" % "bootstrap" % "3.3.7",
-
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus" %% "play" % "1.4.0" % Test
-)
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-routesGenerator := InjectedRoutesGenerator
-
-lazy val play24 = RootProject(file("../../modules/play24"))
-
-lazy val play24Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play24)
+}

@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : ApplicationSpec.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,29 +24,48 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
+import org.scalatestplus.play._
 
-version := "1.0.0.P24"
+import play.api.test._
+import play.api.test.Helpers._
 
-scalaVersion := "2.11.8"
+import com.builtamont.controllers.routes
 
-libraryDependencies ++= Seq(
-  // Utilities
-  "net.codingwell" %% "scala-guice" % "4.0.0",
+class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
-  // WebJars
-  "org.webjars.bower" % "jquery" % "1.12.4",
-  "org.webjars.bower" % "bootstrap" % "3.3.7",
+  "Routes" should {
 
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus" %% "play" % "1.4.0" % Test
-)
+    "send 404 on a bad request" in  {
+      route(app, FakeRequest(GET, "/boum")).map(status) mustBe Some(NOT_FOUND)
+    }
 
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+  }
 
-routesGenerator := InjectedRoutesGenerator
+  "HomeController" should {
 
-lazy val play24 = RootProject(file("../../modules/play24"))
+    "render the index page" in {
+      val Some(home) = route(app, FakeRequest(GET, routes.HomeController.index().url))
 
-lazy val play24Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play24)
+      status(home) mustBe OK
+      contentType(home) mustBe Some("text/html")
+      contentAsString(home) must include ("Hello, world!")
+    }
+
+    "render the example page as HTML" in {
+      val Some(exampleHtml) = route(app, FakeRequest(GET, routes.HomeController.exampleHtml().url))
+
+      status(exampleHtml) mustBe OK
+      contentType(exampleHtml) mustBe Some("text/html")
+      contentAsString(exampleHtml) must include ("Example page for `play2-scala-pdf`")
+    }
+
+    "render the example page as PDF" in {
+      val Some(exampleHtml) = route(app, FakeRequest(GET, routes.HomeController.examplePdf().url))
+
+      status(exampleHtml) mustBe OK
+      contentType(exampleHtml) mustBe Some("application/pdf")
+    }
+
+  }
+
+}
