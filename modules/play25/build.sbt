@@ -24,29 +24,32 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
+name := """play2-scala-pdf"""
 
-version := "1.0.0.P24"
+organization := "com.builtamont"
+
+version := "1.6.0.P25-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
 libraryDependencies ++= Seq(
-  // Utilities
-  "net.codingwell" %% "scala-guice" % "4.0.0",
+  // Apache Commons IO
+  //   - https://commons.apache.org/proper/commons-io/
+  "commons-io" % "commons-io" % "2.5",
 
-  // WebJars
-  "org.webjars.bower" % "jquery" % "1.12.4",
-  "org.webjars.bower" % "bootstrap" % "3.3.7",
+  // HTML parsing + PDF generation
+  //   - http://jtidy.sourceforge.net/
+  //   - https://code.google.com/archive/p/flying-saucer/
+  //   - https://about.validator.nu/htmlparser/
+  "net.sf.jtidy" % "jtidy" % "r938",
+  "org.xhtmlrenderer" % "flying-saucer-pdf" % "9.0.9",
+  "nu.validator.htmlparser" % "htmlparser" % "1.4",
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus" %% "play" % "1.4.0" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
-routesGenerator := InjectedRoutesGenerator
-
-lazy val play24 = RootProject(file("../../modules/play24"))
-
-lazy val play24Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play24)
+lazy val play25 = (project in file(".")).enablePlugins(PlayScala)
