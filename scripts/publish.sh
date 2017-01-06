@@ -26,4 +26,4 @@
 #   SOFTWARE.
 ###
 
-./$MODULE_DIR/bin/activator "+ publish"
+./bin/activator "+ publish"

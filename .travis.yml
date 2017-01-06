@@ -8,5 +8,5 @@ env:
   matrix:
     - MODULE_DIR=modules/play24
     - MODULE_DIR=modules/play25
-script: ./scripts/test.sh
-after_success: test $TRAVIS_BRANCH = "master" && ./scripts/publish.sh
+script: cd $MODULE_DIR && ../../scripts/test.sh
+after_success: test $TRAVIS_BRANCH = "master" && ../../scripts/publish.sh

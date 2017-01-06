@@ -26,7 +26,7 @@
 #   SOFTWARE.
 ###
 
-./$MODULE_DIR/bin/activator "+ update"
-./$MODULE_DIR/bin/activator "+ clean"
-./$MODULE_DIR/bin/activator "+ compile"
-./$MODULE_DIR/bin/activator "+ test"
+./bin/activator "+ update"
+./bin/activator "+ clean"
+./bin/activator "+ compile"
+./bin/activator "+ test"
