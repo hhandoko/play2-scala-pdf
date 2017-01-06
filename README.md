@@ -1,4 +1,6 @@
-[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE) [![Master Build Status](https://travis-ci.org/builtamont-oss/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/builtamont-oss/play2-scala-pdf)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+[![Master Build Status](https://travis-ci.org/builtamont-oss/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/builtamont-oss/play2-scala-pdf)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.builtamont/play2-scala-pdf_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.builtamont/play2-scala-pdf_2.11)
 
 # Play 2.4+ PDF module
 
@@ -27,7 +29,7 @@ Currently, the module is hosted at Maven Central Repository. Include the followi
 ``` scala
 libraryDependencies ++= Seq(
   ...
-  "com.builtamont" %% "play2-scala-pdf" % "1.6.0.P25" // Or `1.6.0.P24` for Play 2.4.x apps
+  "com.builtamont" %% "play2-scala-pdf" % "1.6.1.P25" // Or `1.6.1.P24` for Play 2.4.x apps
 )
 ```
 
