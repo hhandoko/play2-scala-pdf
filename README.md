@@ -6,7 +6,20 @@
 
 It simply renders Play! HTML and CSS-based view templates to PDF via [Flying Saucer library], which uses older, open-source version of iText for PDF generation.
 
-This project is a fork of [https://github.com/innoveit/play2-pdf](https://github.com/innoveit/play2-pdf). The primary reason for the fork is to reduce the final distribution size for Play! Scala projects by rebasing the module to Play! Scala core (i.e. avoid including Play! Java additions in Play! Scala projects). 
+### Supported Play Framework and Scala Versions
+
+The supported Scala and Play versions as follows:
+
+|           | Scala 2.10 | Scala 2.11 |
+| --------- |:----------:|:----------:|
+| Play 2.4  | `YES`      | `YES`      |
+| Play 2.5  |            | `YES`      |
+
+### Play Framework Java
+
+If you are using Play Framework Java, check out [https://github.com/innoveit/play2-pdf](https://github.com/innoveit/play2-pdf).
+
+`play2-scala-pdf` is a fork of the project above with the aim to reduce the final distribution size for Play! Scala projects by rebasing the module to Play! Scala core (i.e. avoid including Play! Java additions in Play! Scala projects).
 
 ## Installation
 

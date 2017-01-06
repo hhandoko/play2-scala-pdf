@@ -39,20 +39,20 @@ if defined var1 (
 @REM determine ACTIVATOR_HOME environment variable
 set BIN_DIRECTORY=%~dp0
 set BIN_DIRECTORY=%BIN_DIRECTORY:~0,-1%
-for %%d in (%BIN_DIRECTORY%) do set ACTIVATOR_HOME=%%~dpd
+for %%d in ("%BIN_DIRECTORY%") do set ACTIVATOR_HOME=%%~dpd
 set ACTIVATOR_HOME=%ACTIVATOR_HOME:~0,-1%
 
 echo ACTIVATOR_HOME=%ACTIVATOR_HOME%
 
 set ERROR_CODE=0
-set APP_VERSION=1.3.10
+set APP_VERSION=1.3.12
 set ACTIVATOR_LAUNCH_JAR=activator-launch-%APP_VERSION%.jar
 
 rem Detect if we were double clicked, although theoretically A user could
 rem manually run cmd /c
 for %%x in (%cmdcmdline%) do if %%~x==/c set DOUBLECLICKED=1
 
-set SBT_HOME=%BIN_DIRECTORY
+set SBT_HOME=%BIN_DIRECTORY%
 
 rem Detect if we were double clicked, although theoretically A user could
 rem manually run cmd /c
