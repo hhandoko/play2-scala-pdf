@@ -32,6 +32,8 @@ version := "1.6.1.P24-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
+crossScalaVersions := Seq("2.10.6", "2.11.8")
+
 libraryDependencies ++= Seq(
   // Apache Commons IO
   //   - https://commons.apache.org/proper/commons-io/
@@ -42,8 +44,15 @@ libraryDependencies ++= Seq(
   //   - https://code.google.com/archive/p/flying-saucer/
   //   - https://about.validator.nu/htmlparser/
   "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf" % "9.1.1",
+  "org.xhtmlrenderer" % "flying-saucer-pdf" % "9.1.1" excludeAll(
+    ExclusionRule(organization = "bouncycastle")
+  ),
   "nu.validator.htmlparser" % "htmlparser" % "1.4",
+
+  // Re-import Bouncy Castle dependency from new coordinates
+  "org.bouncycastle" % "bcmail-jdk14" % "1.38",
+  "org.bouncycastle" % "bcprov-jdk14" % "1.38",
+  "org.bouncycastle" % "bctsp-jdk14" % "1.38",
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
