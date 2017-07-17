@@ -26,7 +26,7 @@
 #   SOFTWARE.
 ###
 
-./bin/activator "+ update"
-./bin/activator "+ clean"
-./bin/activator "+ compile"
-./bin/activator "+ test"
+sbt "+ update"
+sbt "+ clean"
+sbt "+ compile"
+sbt "+ test"

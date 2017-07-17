@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Master Build Status](https://travis-ci.org/builtamont-oss/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/builtamont-oss/play2-scala-pdf)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.builtamont/play2-scala-pdf_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.builtamont/play2-scala-pdf_2.11)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.builtamont/play2-scala-pdf_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.builtamont/play2-scala-pdf_2.12)
 
 # Play 2.4+ PDF module
 
@@ -12,10 +12,11 @@ It simply renders Play! HTML and CSS-based view templates to PDF via [Flying Sau
 
 The supported Scala and Play versions as follows:
 
-|           | Scala 2.10 | Scala 2.11 |
-| --------- |:----------:|:----------:|
-| Play 2.4  | `YES`      | `YES`      |
-| Play 2.5  |            | `YES`      |
+|           | Scala 2.10 | Scala 2.11 | Scala 2.12 |
+| --------- |:----------:|:----------:|:----------:|
+| Play 2.4  | `YES`      | `YES`      |            |
+| Play 2.5  |            | `YES`      |            |
+| Play 2.6  |            | `YES`      | `YES`      |
 
 ### Play Framework Java
 
@@ -29,7 +30,7 @@ Currently, the module is hosted at Maven Central Repository. Include the followi
 ``` scala
 libraryDependencies ++= Seq(
   ...
-  "com.builtamont" %% "play2-scala-pdf" % "1.6.2.P25" // Or `1.6.2.P24` for Play 2.4.x apps
+  "com.builtamont" %% "play2-scala-pdf" % "2.0.0.P26" // Use `2.0.0.P25` for Play 2.5.x apps or `2.0.0.P24 for Play 2.4.x apps
 )
 ```
 
