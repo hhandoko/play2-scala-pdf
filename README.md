@@ -75,8 +75,10 @@ Please observe the following constraints to avoid issues when using this module:
 
   - Avoid using `media="screen"` qualifier on linked CSS in `<head>`, otherwise you must provide specific print stylesheets (i.e. `media="print"`)
   - Non-system fonts must be loaded explicitly (see below for example)
-
-External assets such as images and stylesheets will be loaded via HTTP calls (as per normal HTML page load). However, if the specified URI is a path into Play! app classpath, the resource is loaded directly instead. See the above sample template for an example.
+  - External assets such as images need to be loaded as base64-encoded string
+  - External such as stylesheets will be loaded as per normal HTML page load
+  
+*NOTE: If the specified URI is a path into Play! app classpath, the resource is loaded directly instead. See the above sample template for an example.*
 
 Fonts can be loaded by invoking `PdfGenerator.loadLocalFonts` method. For example:
 
