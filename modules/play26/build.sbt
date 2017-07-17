@@ -28,7 +28,7 @@ name := """play2-scala-pdf"""
 
 organization := "com.builtamont"
 
-version := "1.6.3.P25-SNAPSHOT"
+version := "2.0.0.P25-SNAPSHOT"
 
 scalaVersion := "2.12.2"
 
@@ -36,6 +36,7 @@ crossScalaVersions := Seq("2.11.8", "2.12.2")
 
 libraryDependencies ++= Seq(
   guice,
+
   // Apache Commons IO
   //   - https://commons.apache.org/proper/commons-io/
   "commons-io" % "commons-io" % "2.5",
