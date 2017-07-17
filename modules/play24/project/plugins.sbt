@@ -1,5 +1,5 @@
 // Play SBT plugin
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.4.8")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.4.11")
 
 // Maven publishing-specific
 // ~~~~~
