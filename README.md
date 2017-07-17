@@ -12,10 +12,11 @@ It simply renders Play! HTML and CSS-based view templates to PDF via [Flying Sau
 
 The supported Scala and Play versions as follows:
 
-|           | Scala 2.10 | Scala 2.11 |
-| --------- |:----------:|:----------:|
-| Play 2.4  | `YES`      | `YES`      |
-| Play 2.5  |            | `YES`      |
+|           | Scala 2.10 | Scala 2.11 | Scala 2.12 |
+| --------- |:----------:|:----------:|:----------:|
+| Play 2.4  | `YES`      | `YES`      |            |
+| Play 2.5  |            | `YES`      |            |
+| Play 2.6  |            | `YES`      | `YES`      |
 
 ### Play Framework Java
 
