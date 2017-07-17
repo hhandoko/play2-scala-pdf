@@ -29,7 +29,7 @@ Currently, the module is hosted at Maven Central Repository. Include the followi
 ``` scala
 libraryDependencies ++= Seq(
   ...
-  "com.builtamont" %% "play2-scala-pdf" % "1.6.1.P25" // Or `1.6.1.P24` for Play 2.4.x apps
+  "com.builtamont" %% "play2-scala-pdf" % "1.6.2.P25" // Or `1.6.2.P24` for Play 2.4.x apps
 )
 ```
 
