@@ -41,18 +41,11 @@ libraryDependencies ++= Seq(
 
   // HTML parsing + PDF generation
   //   - http://jtidy.sourceforge.net/
-  //   - https://code.google.com/archive/p/flying-saucer/
+  //   - https://github.com/flyingsaucerproject/flyingsaucer
   //   - https://about.validator.nu/htmlparser/
   "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf" % "9.1.1" excludeAll(
-    ExclusionRule(organization = "bouncycastle")
-  ),
+  "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.1.6",
   "nu.validator.htmlparser" % "htmlparser" % "1.4",
-
-  // Re-import Bouncy Castle dependency from new coordinates
-  "org.bouncycastle" % "bcmail-jdk14" % "1.38",
-  "org.bouncycastle" % "bcprov-jdk14" % "1.38",
-  "org.bouncycastle" % "bctsp-jdk14" % "1.38",
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
