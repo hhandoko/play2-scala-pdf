@@ -26,4 +26,4 @@
 #   SOFTWARE.
 ###
 
-./bin/activator "+ publish"
+sbt "+ publish"
