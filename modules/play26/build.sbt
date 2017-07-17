@@ -24,31 +24,35 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
+name := """play2-scala-pdf"""
 
-version := "1.0.0.P25"
+organization := "com.builtamont"
 
-scalaVersion := "2.11.8"
+version := "1.6.3.P25-SNAPSHOT"
 
-crossScalaVersions := Seq("2.11.8")
+scalaVersion := "2.12.2"
+
+crossScalaVersions := Seq("2.11.8", "2.12.2")
 
 libraryDependencies ++= Seq(
-  // Utilities
-  "net.codingwell" %% "scala-guice" % "4.1.0",
+  guice,
+  // Apache Commons IO
+  //   - https://commons.apache.org/proper/commons-io/
+  "commons-io" % "commons-io" % "2.5",
 
-  // WebJars
-  "org.webjars.bower" % "jquery" % "1.12.4",
-  "org.webjars.bower" % "bootstrap" % "3.3.7",
+  // HTML parsing + PDF generation
+  //   - http://jtidy.sourceforge.net/
+  //   - https://github.com/flyingsaucerproject/flyingsaucer
+  //   - https://about.validator.nu/htmlparser/
+  "net.sf.jtidy" % "jtidy" % "r938",
+  "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.1.6",
+  "nu.validator.htmlparser" % "htmlparser" % "1.4",
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.0" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
-routesGenerator := InjectedRoutesGenerator
-
-lazy val play25 = RootProject(file("../../modules/play25"))
-
-lazy val play25Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play25)
+lazy val play26 = (project in file(".")).enablePlugins(PlayScala)

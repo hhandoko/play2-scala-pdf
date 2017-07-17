@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : ApplicationModule.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,31 +24,31 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
+package com.builtamont
 
-version := "1.0.0.P25"
+import com.google.inject.{AbstractModule, Provides}
+import net.codingwell.scalaguice.ScalaModule
 
-scalaVersion := "2.11.8"
+import _root_.play.api.Environment
 
-crossScalaVersions := Seq("2.11.8")
+import com.builtamont.play.pdf.PdfGenerator
 
-libraryDependencies ++= Seq(
-  // Utilities
-  "net.codingwell" %% "scala-guice" % "4.1.0",
+class ApplicationModule extends AbstractModule with ScalaModule {
 
-  // WebJars
-  "org.webjars.bower" % "jquery" % "1.12.4",
-  "org.webjars.bower" % "bootstrap" % "3.3.7",
+  /** Module configuration + binding */
+  def configure(): Unit = {}
 
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
-)
+  /**
+   * Provides PDF generator implementation.
+   *
+   * @param env The current Play app Environment context.
+   * @return PDF generator implementation.
+   */
+  @Provides
+  def providePdfGenerator(env: Environment): PdfGenerator = {
+    val pdfGen = new PdfGenerator(env)
+    pdfGen.loadLocalFonts(Seq("fonts/opensans-regular.ttf"))
+    pdfGen
+  }
 
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-routesGenerator := InjectedRoutesGenerator
-
-lazy val play25 = RootProject(file("../../modules/play25"))
-
-lazy val play25Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play25)
+}

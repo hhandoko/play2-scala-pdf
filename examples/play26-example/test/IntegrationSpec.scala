@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : IntegrationSpec.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,31 +24,31 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
 
-version := "1.0.0.P25"
+class IntegrationSpec extends PlaySpec with GuiceOneServerPerTest with OneBrowserPerTest with HtmlUnitFactory {
 
-scalaVersion := "2.11.8"
+  val BASE_URL = "http://localhost:" + port
 
-crossScalaVersions := Seq("2.11.8")
+  "Application" should {
 
-libraryDependencies ++= Seq(
-  // Utilities
-  "net.codingwell" %% "scala-guice" % "4.1.0",
+    "work from within a browser" in {
+      go to BASE_URL
 
-  // WebJars
-  "org.webjars.bower" % "jquery" % "1.12.4",
-  "org.webjars.bower" % "bootstrap" % "3.3.7",
+      pageSource must include ("Hello, world!")
+    }
 
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
-)
+    "load example page as HTML" in {
+      go to (BASE_URL + routes.HomeController.exampleHtml().url)
 
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+      pageTitle must include ("`play2-scala-pdf` Example | Example Page")
+      pageSource must include ("Example page for `play2-scala-pdf`")
+    }
 
-routesGenerator := InjectedRoutesGenerator
+    "load example page as PDF" in {
+      go to (BASE_URL + routes.HomeController.examplePdf().url)
 
-lazy val play25 = RootProject(file("../../modules/play25"))
+      pageSource must include ("`play2-scala-pdf` Example | Example Page")
+    }
 
-lazy val play25Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play25)
+  }
+}

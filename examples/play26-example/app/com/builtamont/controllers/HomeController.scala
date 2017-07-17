@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : HomeController.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,31 +24,46 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
+package com.builtamont.controllers
 
-version := "1.0.0.P25"
+import javax.inject._
+import scala.concurrent.ExecutionContext
 
-scalaVersion := "2.11.8"
+import play.api.Configuration
+import play.api.mvc._
 
-crossScalaVersions := Seq("2.11.8")
+import com.builtamont.play.pdf.PdfGenerator
 
-libraryDependencies ++= Seq(
-  // Utilities
-  "net.codingwell" %% "scala-guice" % "4.1.0",
+/**
+ * Home controller.
+ *
+ * @param config the application configuration
+ * @param pdfGen the PDF generator implementation.
+ */
+@Singleton
+class HomeController @Inject() (cc: ControllerComponents, config: Configuration, pdfGen: PdfGenerator)(implicit exec: ExecutionContext) extends AbstractController(cc) {
 
-  // WebJars
-  "org.webjars.bower" % "jquery" % "1.12.4",
-  "org.webjars.bower" % "bootstrap" % "3.3.7",
+  val BASE_URL = config.get[Option[String]]("application.base_url").getOrElse("http://localhost:9000")
 
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
-)
+  /**
+   * Returns the homepage ('/').
+   *
+   * @return Homepage.
+   */
+  def index = Action { Ok(views.html.index()) }
 
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+  /**
+   * Returns the example page as HTML ('/example').
+   *
+   * @return Example page.
+   */
+  def exampleHtml = Action { Ok(views.html.example() )}
 
-routesGenerator := InjectedRoutesGenerator
+  /**
+   * Returns the example page as PDF document ('/example.pdf').
+   *
+   * @return Example page as PDF.
+   */
+  def examplePdf = Action { pdfGen.ok(views.html.example(), BASE_URL) }
 
-lazy val play25 = RootProject(file("../../modules/play25"))
-
-lazy val play25Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play25)
+}

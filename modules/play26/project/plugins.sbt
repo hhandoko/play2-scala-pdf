@@ -1,5 +1,5 @@
 // Play Framework plugin
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.4.11")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.1")
 
 // Maven publishing-specific
 // ~~~~~

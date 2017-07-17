@@ -26,13 +26,16 @@
  */
 name := """play2-scala-pdf-example"""
 
-version := "1.0.0.P25"
+version := "1.0.0.P26"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.2"
 
-crossScalaVersions := Seq("2.11.8")
+crossScalaVersions := Seq("2.11.8", "2.12.2")
+
 
 libraryDependencies ++= Seq(
+  guice,
+
   // Utilities
   "net.codingwell" %% "scala-guice" % "4.1.0",
 
@@ -42,13 +45,13 @@ libraryDependencies ++= Seq(
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.0" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 routesGenerator := InjectedRoutesGenerator
 
-lazy val play25 = RootProject(file("../../modules/play25"))
+lazy val play26 = RootProject(file("../../modules/play26"))
 
-lazy val play25Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play25)
+lazy val play26Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play26)

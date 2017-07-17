@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : ApplicationSpec.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,31 +24,42 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
 
-version := "1.0.0.P25"
+class ApplicationSpec extends PlaySpec with GuiceOneAppPerTest {
 
-scalaVersion := "2.11.8"
+  "Routes" should {
 
-crossScalaVersions := Seq("2.11.8")
+    "send 404 on a bad request" in  {
+      route(app, FakeRequest(GET, "/boum")).map(status) mustBe Some(NOT_FOUND)
+    }
 
-libraryDependencies ++= Seq(
-  // Utilities
-  "net.codingwell" %% "scala-guice" % "4.1.0",
+  }
 
-  // WebJars
-  "org.webjars.bower" % "jquery" % "1.12.4",
-  "org.webjars.bower" % "bootstrap" % "3.3.7",
+  "HomeController" should {
 
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
-)
+    "render the index page" in {
+      val Some(home) = route(app, FakeRequest(GET, routes.HomeController.index().url))
 
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+      status(home) mustBe OK
+      contentType(home) mustBe Some("text/html")
+      contentAsString(home) must include ("Hello, world!")
+    }
 
-routesGenerator := InjectedRoutesGenerator
+    "render the example page as HTML" in {
+      val Some(exampleHtml) = route(app, FakeRequest(GET, routes.HomeController.exampleHtml().url))
 
-lazy val play25 = RootProject(file("../../modules/play25"))
+      status(exampleHtml) mustBe OK
+      contentType(exampleHtml) mustBe Some("text/html")
+      contentAsString(exampleHtml) must include ("Example page for `play2-scala-pdf`")
+    }
 
-lazy val play25Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play25)
+    "render the example page as PDF" in {
+      val Some(exampleHtml) = route(app, FakeRequest(GET, routes.HomeController.examplePdf().url))
+
+      status(exampleHtml) mustBe OK
+      contentType(exampleHtml) mustBe Some("application/pdf")
+    }
+
+  }
+
+}
