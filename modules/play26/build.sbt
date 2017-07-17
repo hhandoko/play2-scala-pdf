@@ -28,7 +28,7 @@ name := """play2-scala-pdf"""
 
 organization := "com.builtamont"
 
-version := "2.0.0.P25-SNAPSHOT"
+version := "2.0.1.P26-SNAPSHOT"
 
 scalaVersion := "2.12.2"
 
