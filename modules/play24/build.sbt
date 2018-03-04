@@ -44,7 +44,7 @@ libraryDependencies ++= Seq(
   //   - https://github.com/flyingsaucerproject/flyingsaucer
   //   - https://about.validator.nu/htmlparser/
   "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.1.6",
+  "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.1.12",
   "nu.validator.htmlparser" % "htmlparser" % "1.4",
 
   // ScalaTest + Play plugin
