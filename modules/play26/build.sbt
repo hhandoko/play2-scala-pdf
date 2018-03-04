@@ -30,28 +30,28 @@ organization := "com.hhandoko"
 
 version := "3.0.0.P26-SNAPSHOT"
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.12.4"
 
-crossScalaVersions := Seq("2.11.8", "2.12.2")
+crossScalaVersions := Seq("2.11.12", "2.12.4")
 
 libraryDependencies ++= Seq(
   guice,
 
   // Apache Commons IO
   //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.5",
+  "commons-io" % "commons-io" % "2.6",
 
   // HTML parsing + PDF generation
   //   - http://jtidy.sourceforge.net/
   //   - https://github.com/flyingsaucerproject/flyingsaucer
   //   - https://about.validator.nu/htmlparser/
   "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.1.6",
+  "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.1.12",
   "nu.validator.htmlparser" % "htmlparser" % "1.4",
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.0" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

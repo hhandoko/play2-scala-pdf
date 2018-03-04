@@ -28,9 +28,9 @@ name := """play2-scala-pdf-example"""
 
 version := "1.0.0.P25"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.12"
 
-crossScalaVersions := Seq("2.11.8")
+crossScalaVersions := Seq("2.11.12")
 
 libraryDependencies ++= Seq(
   // Utilities
@@ -42,7 +42,7 @@ libraryDependencies ++= Seq(
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "2.0.1" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

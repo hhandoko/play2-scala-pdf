@@ -30,21 +30,21 @@ organization := "com.hhandoko"
 
 version := "3.0.0.P24-SNAPSHOT"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.12"
 
-crossScalaVersions := Seq("2.10.6", "2.11.8")
+crossScalaVersions := Seq("2.10.7", "2.11.12")
 
 libraryDependencies ++= Seq(
   // Apache Commons IO
   //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.5",
+  "commons-io" % "commons-io" % "2.6",
 
   // HTML parsing + PDF generation
   //   - http://jtidy.sourceforge.net/
   //   - https://github.com/flyingsaucerproject/flyingsaucer
   //   - https://about.validator.nu/htmlparser/
   "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.1.6",
+  "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.1.12",
   "nu.validator.htmlparser" % "htmlparser" % "1.4",
 
   // ScalaTest + Play plugin
