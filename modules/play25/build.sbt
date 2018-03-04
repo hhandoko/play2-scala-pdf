@@ -37,7 +37,7 @@ crossScalaVersions := Seq("2.11.12")
 libraryDependencies ++= Seq(
   // Apache Commons IO
   //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.5",
+  "commons-io" % "commons-io" % "2.6",
 
   // HTML parsing + PDF generation
   //   - http://jtidy.sourceforge.net/
