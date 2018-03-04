@@ -26,7 +26,7 @@
  */
 name := """play2-scala-pdf"""
 
-organization := "com.builtamont"
+organization := "com.hhandoko"
 
 version := "2.0.1.P26-SNAPSHOT"
 

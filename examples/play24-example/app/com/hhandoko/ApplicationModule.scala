@@ -1,5 +1,5 @@
 /**
- * File     : HomeController.scala
+ * File     : ApplicationModule.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,45 +24,28 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-package com.builtamont.controllers
+package com.hhandoko
 
-import javax.inject._
+import com.google.inject.{AbstractModule, Provides}
+import net.codingwell.scalaguice.ScalaModule
 
-import play.api.Configuration
-import play.api.mvc._
+import com.hhandoko.play.pdf.PdfGenerator
 
-import com.builtamont.play.pdf.PdfGenerator
+class ApplicationModule extends AbstractModule with ScalaModule {
 
-/**
- * Home controller.
- *
- * @param config the application configuration
- * @param pdfGen the PDF generator implementation.
- */
-@Singleton
-class HomeController @Inject() (config: Configuration, pdfGen: PdfGenerator) extends Controller {
-
-  val BASE_URL = config.getString("application.base_url").getOrElse("http://localhost:9000")
+  /** Module configuration + binding */
+  def configure(): Unit = {}
 
   /**
-   * Returns the homepage ('/').
+   * Provides PDF generator implementation.
    *
-   * @return Homepage.
+   * @return PDF generator implementation.
    */
-  def index = Action { Ok(views.html.index()) }
-
-  /**
-   * Returns the example page as HTML ('/example').
-   *
-   * @return Example page.
-   */
-  def exampleHtml = Action { Ok(views.html.example() )}
-
-  /**
-   * Returns the example page as PDF document ('/example.pdf').
-   *
-   * @return Example page as PDF.
-   */
-  def examplePdf = Action { pdfGen.ok(views.html.example(), BASE_URL) }
+  @Provides
+  def providePdfGenerator(): PdfGenerator = {
+    val pdfGen = new PdfGenerator()
+    pdfGen.loadLocalFonts(Seq("fonts/opensans-regular.ttf"))
+    pdfGen
+  }
 
 }

@@ -24,12 +24,14 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-package com.builtamont
+package com.hhandoko
 
 import com.google.inject.{AbstractModule, Provides}
 import net.codingwell.scalaguice.ScalaModule
 
-import com.builtamont.play.pdf.PdfGenerator
+import _root_.play.api.Environment
+
+import com.hhandoko.play.pdf.PdfGenerator
 
 class ApplicationModule extends AbstractModule with ScalaModule {
 
@@ -39,11 +41,12 @@ class ApplicationModule extends AbstractModule with ScalaModule {
   /**
    * Provides PDF generator implementation.
    *
+   * @param env The current Play app Environment context.
    * @return PDF generator implementation.
    */
   @Provides
-  def providePdfGenerator(): PdfGenerator = {
-    val pdfGen = new PdfGenerator()
+  def providePdfGenerator(env: Environment): PdfGenerator = {
+    val pdfGen = new PdfGenerator(env)
     pdfGen.loadLocalFonts(Seq("fonts/opensans-regular.ttf"))
     pdfGen
   }

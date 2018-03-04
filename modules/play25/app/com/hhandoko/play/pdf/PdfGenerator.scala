@@ -27,7 +27,7 @@
  * Notes:
  *   Also based on https://github.com/sihil/sihilsia/blob/master/app/controllers/pdf.scala
  */
-package com.builtamont.play.pdf
+package com.hhandoko.play.pdf
 
 import java.io._
 import scala.collection.mutable.ArrayBuffer

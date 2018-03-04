@@ -29,7 +29,7 @@ import org.scalatestplus.play._
 import play.api.test._
 import play.api.test.Helpers._
 
-import com.builtamont.controllers.routes
+import com.hhandoko.controllers.routes
 
 class ApplicationSpec extends PlaySpec with OneAppPerTest {
 

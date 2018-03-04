@@ -24,7 +24,7 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-package com.builtamont.play.pdf
+package com.hhandoko.play.pdf
 
 import java.io.InputStream
 import scala.io.Source

@@ -26,7 +26,7 @@
  */
 import org.scalatestplus.play._
 
-import com.builtamont.controllers.routes
+import com.hhandoko.controllers.routes
 
 class IntegrationSpec extends PlaySpec with OneServerPerTest with OneBrowserPerTest with HtmlUnitFactory {
 

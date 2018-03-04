@@ -24,7 +24,7 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-package com.builtamont.controllers
+package com.hhandoko.controllers
 
 import javax.inject._
 import scala.concurrent.ExecutionContext
@@ -32,7 +32,7 @@ import scala.concurrent.ExecutionContext
 import play.api.Configuration
 import play.api.mvc._
 
-import com.builtamont.play.pdf.PdfGenerator
+import com.hhandoko.play.pdf.PdfGenerator
 
 /**
  * Home controller.
@@ -41,9 +41,9 @@ import com.builtamont.play.pdf.PdfGenerator
  * @param pdfGen the PDF generator implementation.
  */
 @Singleton
-class HomeController @Inject() (cc: ControllerComponents, config: Configuration, pdfGen: PdfGenerator)(implicit exec: ExecutionContext) extends AbstractController(cc) {
+class HomeController @Inject() (config: Configuration, pdfGen: PdfGenerator)(implicit exec: ExecutionContext) extends Controller {
 
-  val BASE_URL = config.get[Option[String]]("application.base_url").getOrElse("http://localhost:9000")
+  val BASE_URL = config.getString("application.base_url").getOrElse("http://localhost:9000")
 
   /**
    * Returns the homepage ('/').
