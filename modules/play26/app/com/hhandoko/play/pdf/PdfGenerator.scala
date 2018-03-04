@@ -4,7 +4,7 @@
  *   The MIT License (MIT)
  *
  *   Original   - Copyright (c) 2014 Jöerg Viola, Marco Sinigaglia
- *   Derivative - Copyright (c) 2016 Citadel Technology Solutions Pte Ltd
+ *   Derivative - Copyright (c) 2016 - 2018 play2-scala-pdf Contributors
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
  *   of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
  * Notes:
  *   Also based on https://github.com/sihil/sihilsia/blob/master/app/controllers/pdf.scala
  */
-package com.builtamont.play.pdf
+package com.hhandoko.play.pdf
 
 import java.io._
 import scala.collection.mutable.ArrayBuffer
@@ -39,17 +39,18 @@ import org.apache.commons.io.{FilenameUtils, IOUtils}
 import org.w3c.tidy.Tidy
 import org.xhtmlrenderer.pdf.ITextRenderer
 
-import play.api.Play
+import play.api.Environment
 import play.api.mvc.{Result, Results}
 import play.twirl.api.Html
 
 /**
  * PDF generator service.
  *
+ * @param env The current Play app Environment context.
  * @param xhtml true to set XHTML strict parsing (i.e. leave disabled for HTML5 templates).
  */
 @Singleton
-class PdfGenerator(val xhtml: Boolean = false) {
+class PdfGenerator(env: Environment, val xhtml: Boolean = false) {
 
   /** HTML tidy checker / prettyprinter instance for XHTML strict parsing */
   private lazy val tidyParser = {
@@ -79,7 +80,7 @@ class PdfGenerator(val xhtml: Boolean = false) {
    */
   def addTemporaryFonts(fonts: Seq[String]): Unit = {
     fonts.foreach { font =>
-      val stream = Play.current.resourceAsStream(font)
+      val stream = env.resourceAsStream(font)
 
       stream.map { s =>
         val file = File.createTempFile("tmp_" + FilenameUtils.getBaseName(font), "." + FilenameUtils.getExtension(font))
@@ -165,7 +166,7 @@ class PdfGenerator(val xhtml: Boolean = false) {
     val input = new ByteArrayInputStream(string.getBytes("UTF-8"))
     val renderer = new ITextRenderer()
     fonts.foreach { font => renderer.getFontResolver.addFont(font, BaseFont.IDENTITY_H, BaseFont.EMBEDDED) }
-    val userAgent = new PdfUserAgent(renderer.getOutputDevice)
+    val userAgent = new PdfUserAgent(env, renderer.getOutputDevice)
     userAgent.setSharedContext(renderer.getSharedContext)
     renderer.getSharedContext.setUserAgentCallback(userAgent)
     val document = new HtmlDocumentBuilder().parse(input)

@@ -1,10 +1,10 @@
 /**
- * File     : ApplicationModule.scala
+ * File     : HomeController.scala
  * License  :
  *   The MIT License (MIT)
  *
  *   Original   - Copyright (c) 2014 Jöerg Viola, Marco Sinigaglia
- *   Derivative - Copyright (c) 2016 Citadel Technology Solutions Pte Ltd
+ *   Derivative - Copyright (c) 2016 - 2018 play2-scala-pdf Contributors
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
  *   of this software and associated documentation files (the "Software"), to deal
@@ -24,31 +24,46 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-package com.builtamont
+package com.hhandoko.controllers
 
-import com.google.inject.{AbstractModule, Provides}
-import net.codingwell.scalaguice.ScalaModule
+import javax.inject._
+import scala.concurrent.ExecutionContext
 
-import _root_.play.api.Environment
+import play.api.Configuration
+import play.api.mvc._
 
-import com.builtamont.play.pdf.PdfGenerator
+import com.hhandoko.play.pdf.PdfGenerator
 
-class ApplicationModule extends AbstractModule with ScalaModule {
+/**
+ * Home controller.
+ *
+ * @param config the application configuration
+ * @param pdfGen the PDF generator implementation.
+ */
+@Singleton
+class HomeController @Inject() (config: Configuration, pdfGen: PdfGenerator)(implicit exec: ExecutionContext) extends Controller {
 
-  /** Module configuration + binding */
-  def configure(): Unit = {}
+  val BASE_URL = config.getString("application.base_url").getOrElse("http://localhost:9000")
 
   /**
-   * Provides PDF generator implementation.
+   * Returns the homepage ('/').
    *
-   * @param env The current Play app Environment context.
-   * @return PDF generator implementation.
+   * @return Homepage.
    */
-  @Provides
-  def providePdfGenerator(env: Environment): PdfGenerator = {
-    val pdfGen = new PdfGenerator(env)
-    pdfGen.loadLocalFonts(Seq("fonts/opensans-regular.ttf"))
-    pdfGen
-  }
+  def index = Action { Ok(views.html.index()) }
+
+  /**
+   * Returns the example page as HTML ('/example').
+   *
+   * @return Example page.
+   */
+  def exampleHtml = Action { Ok(views.html.example() )}
+
+  /**
+   * Returns the example page as PDF document ('/example.pdf').
+   *
+   * @return Example page as PDF.
+   */
+  def examplePdf = Action { pdfGen.ok(views.html.example(), BASE_URL) }
 
 }

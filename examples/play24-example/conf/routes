@@ -4,7 +4,7 @@
 #   The MIT License (MIT)
 #
 #   Original   - Copyright (c) 2014 Jöerg Viola, Marco Sinigaglia
-#   Derivative - Copyright (c) 2016 Citadel Technology Solutions Pte Ltd
+#   Derivative - Copyright (c) 2016 - 2018 play2-scala-pdf Contributors
 #
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
 #   of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,6 @@
 GET     /assets/*file               controllers.Assets.versioned(path = "/public", file: Asset)
 
 # Pages
-GET     /example.pdf                com.builtamont.controllers.HomeController.examplePdf
-GET     /example                    com.builtamont.controllers.HomeController.exampleHtml
-GET     /                           com.builtamont.controllers.HomeController.index
+GET     /example.pdf                com.hhandoko.controllers.HomeController.examplePdf
+GET     /example                    com.hhandoko.controllers.HomeController.exampleHtml
+GET     /                           com.hhandoko.controllers.HomeController.index

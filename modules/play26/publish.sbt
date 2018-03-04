@@ -4,7 +4,7 @@
  *   The MIT License (MIT)
  *
  *   Original   - Copyright (c) 2014 Jöerg Viola, Marco Sinigaglia
- *   Derivative - Copyright (c) 2016 Citadel Technology Solutions Pte Ltd
+ *   Derivative - Copyright (c) 2016 - 2018 play2-scala-pdf Contributors
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
  *   of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ publishMavenStyle := true
 
 pomIncludeRepository := { _ => false }
 
-sonatypeProfileName := "com.builtamont"
+sonatypeProfileName := "com.hhandoko"
 
 publishTo := {
   val nexus = "https://oss.sonatype.org/"
@@ -39,17 +39,17 @@ publishTo := {
 }
 
 pomExtra in Global := (
-  <url>https://github.com/builtamont-oss/play2-scala-pdf</url>
+  <url>https://github.com/hhandoko/play2-scala-pdf</url>
   <licenses>
     <license>
       <name>MIT</name>
-      <url>https://raw.githubusercontent.com/builtamont-oss/play2-scala-pdf/master/LICENSE</url>
+      <url>https://raw.githubusercontent.com/hhandoko/play2-scala-pdf/master/LICENSE</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
   <scm>
-    <url>git@github.com:builtamont-oss/play2-scala-pdf.git</url>
-    <connection>scm:git:git@github.com:builtamont-oss/play2-scala-pdf.git</connection>
+    <url>git@github.com:hhandoko/play2-scala-pdf.git</url>
+    <connection>scm:git:git@github.com:hhandoko/play2-scala-pdf.git</connection>
   </scm>
   <developers>
     <developer>

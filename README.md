@@ -1,13 +1,13 @@
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Master Build Status](https://travis-ci.org/hhandoko/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/hhandoko/play2-scala-pdf)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.builtamont/play2-scala-pdf_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.builtamont/play2-scala-pdf_2.12)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play2-scala-pdf_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play2-scala-pdf_2.12)
 
 ### !!! IMPORTANT NOTICE !!!
 
 Dear play2-scala-pdf users, I will be making some significant changes to this project over the next couple of months:
 
   - ~~The project repository will be moved under my own account (i.e. `hhandoko/play2-scala-pdf`)~~
-  - The project organisation namespace will be updated to `com.hhandoko`
+  - ~~The project organisation namespace will be updated to `com.hhandoko`~~
 
 I have joined a new company, but unfortunately there were no other developers in my previous company able to pick up the responsibility of maintaining this project. Rather than abandoning it, I will continue to develop and maintain it but in my personal capacity.
 
@@ -41,7 +41,7 @@ Currently, the module is hosted at Maven Central Repository. Include the followi
 ``` scala
 libraryDependencies ++= Seq(
   ...
-  "com.builtamont" %% "play2-scala-pdf" % "2.0.0.P26" // Use `2.0.0.P25` for Play 2.5.x apps or `2.0.0.P24 for Play 2.4.x apps
+  "com.hhandoko" %% "play2-scala-pdf" % "2.0.0.P26" // Use `2.0.0.P25` for Play 2.5.x apps or `2.0.0.P24 for Play 2.4.x apps
 )
 ```
 
@@ -67,7 +67,7 @@ You can use a standard Play! Scala template like this one:
 }
 ```
 
-Then this template, after having imported ```com.builtamont.play.pdf.PdfGenerator```, can simply be rendered as:
+Then this template, after having imported ```com.hhandoko.play.pdf.PdfGenerator```, can simply be rendered as:
 ``` scala
 class HomeController @Inject() (pdfGen: PdfGenerator) extends Controller {
     
@@ -123,7 +123,7 @@ Please read [CONTRIBUTING] for more details.
 
 ## Releases
 
-https://github.com/builtamont/play2-scala-pdf/releases
+https://github.com/hhandoko/play2-scala-pdf/releases
 
 [CONTRIBUTING]: CONTRIBUTING.md
 [Flying Saucer library]: https://github.com/flyingsaucerproject/flyingsaucer

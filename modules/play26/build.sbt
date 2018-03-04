@@ -4,7 +4,7 @@
  *   The MIT License (MIT)
  *
  *   Original   - Copyright (c) 2014 Jöerg Viola, Marco Sinigaglia
- *   Derivative - Copyright (c) 2016 Citadel Technology Solutions Pte Ltd
+ *   Derivative - Copyright (c) 2016 - 2018 play2-scala-pdf Contributors
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
  *   of this software and associated documentation files (the "Software"), to deal
@@ -26,9 +26,9 @@
  */
 name := """play2-scala-pdf"""
 
-organization := "com.builtamont"
+organization := "com.hhandoko"
 
-version := "2.0.1.P26-SNAPSHOT"
+version := "3.0.0.P26-SNAPSHOT"
 
 scalaVersion := "2.12.2"
 

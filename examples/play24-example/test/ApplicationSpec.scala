@@ -4,7 +4,7 @@
  *   The MIT License (MIT)
  *
  *   Original   - Copyright (c) 2014 Jöerg Viola, Marco Sinigaglia
- *   Derivative - Copyright (c) 2016 Citadel Technology Solutions Pte Ltd
+ *   Derivative - Copyright (c) 2016 - 2018 play2-scala-pdf Contributors
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
  *   of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ import org.scalatestplus.play._
 import play.api.test._
 import play.api.test.Helpers._
 
-import com.builtamont.controllers.routes
+import com.hhandoko.controllers.routes
 
 class ApplicationSpec extends PlaySpec with OneAppPerTest {
 

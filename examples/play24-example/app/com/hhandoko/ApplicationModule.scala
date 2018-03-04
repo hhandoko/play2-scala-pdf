@@ -4,7 +4,7 @@
  *   The MIT License (MIT)
  *
  *   Original   - Copyright (c) 2014 Jöerg Viola, Marco Sinigaglia
- *   Derivative - Copyright (c) 2016 Citadel Technology Solutions Pte Ltd
+ *   Derivative - Copyright (c) 2016 - 2018 play2-scala-pdf Contributors
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
  *   of this software and associated documentation files (the "Software"), to deal
@@ -24,14 +24,12 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-package com.builtamont
+package com.hhandoko
 
 import com.google.inject.{AbstractModule, Provides}
 import net.codingwell.scalaguice.ScalaModule
 
-import _root_.play.api.Environment
-
-import com.builtamont.play.pdf.PdfGenerator
+import com.hhandoko.play.pdf.PdfGenerator
 
 class ApplicationModule extends AbstractModule with ScalaModule {
 
@@ -41,12 +39,11 @@ class ApplicationModule extends AbstractModule with ScalaModule {
   /**
    * Provides PDF generator implementation.
    *
-   * @param env The current Play app Environment context.
    * @return PDF generator implementation.
    */
   @Provides
-  def providePdfGenerator(env: Environment): PdfGenerator = {
-    val pdfGen = new PdfGenerator(env)
+  def providePdfGenerator(): PdfGenerator = {
+    val pdfGen = new PdfGenerator()
     pdfGen.loadLocalFonts(Seq("fonts/opensans-regular.ttf"))
     pdfGen
   }
