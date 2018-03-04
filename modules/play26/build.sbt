@@ -28,7 +28,7 @@ name := """play2-scala-pdf"""
 
 organization := "com.hhandoko"
 
-version := "2.0.1.P26-SNAPSHOT"
+version := "3.0.0.P26-SNAPSHOT"
 
 scalaVersion := "2.12.2"
 
