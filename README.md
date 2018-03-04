@@ -2,18 +2,6 @@
 [![Master Build Status](https://travis-ci.org/hhandoko/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/hhandoko/play2-scala-pdf)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play2-scala-pdf_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play2-scala-pdf_2.12)
 
-### !!! IMPORTANT NOTICE !!!
-
-Dear play2-scala-pdf users, I will be making some significant changes to this project over the next couple of months:
-
-  - ~~The project repository will be moved under my own account (i.e. `hhandoko/play2-scala-pdf`)~~
-  - ~~The project organisation namespace will be updated to `com.hhandoko`~~
-  - Publish updated binaries under the new namespace
-
-I have joined a new company, but unfortunately there were no other developers in my previous company able to pick up the responsibility of maintaining this project. Rather than abandoning it, I will continue to develop and maintain it but in my personal capacity.
-
-I apologise for the inconvenience and thank you for your understanding.
-
 # Play [2.4 | 2.5 | 2.6] PDF module
 
 `play2-scala-pdf` is a Play! module to help generate PDF documents dynamically from Play! web application.
@@ -42,7 +30,7 @@ Currently, the module is hosted at Maven Central Repository. Include the followi
 ``` scala
 libraryDependencies ++= Seq(
   ...
-  "com.hhandoko" %% "play2-scala-pdf" % "2.0.0.P26" // Use `2.0.0.P25` for Play 2.5.x apps or `2.0.0.P24 for Play 2.4.x apps
+  "com.hhandoko" %% "play2-scala-pdf" % "3.0.0.P26" // Use `3.0.0.P25` for Play 2.5.x apps or `3.0.0.P24 for Play 2.4.x apps
 )
 ```
 
@@ -115,6 +103,31 @@ We follow the "[fork-and-pull]" Git workflow.
 Please read [CONTRIBUTING] for more details.
 
 ## License
+
+```
+The MIT License (MIT)
+
+Original   - Copyright (c) 2014 Jöerg Viola, Marco Sinigaglia
+Derivative - Copyright (c) 2016 - 2018 play2-scala-pdf Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 `play2-scala-pdf` is released under the MIT license. See the [LICENSE] file for further details.
 

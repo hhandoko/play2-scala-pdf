@@ -48,7 +48,7 @@ class PdfGeneratorSpec extends PlaySpec with OneAppPerTest {
 
   "PdfGenerator" should {
 
-    val author = "Citadel Technology Solutions Pte Ltd"
+    val author = "play2-scala-pdf Contributors"
     val title = "`play2-scala-pdf` HTML to PDF example"
     val heading = "Hello, world!"
 
