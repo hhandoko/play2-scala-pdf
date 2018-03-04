@@ -227,7 +227,7 @@ project/boot/
 
 
 ### PlayFramework ###
-# Ignore Play! working directory #
+# Ignore Play Framework working directory #
 db/
 .eclipse
 lib/

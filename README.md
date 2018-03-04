@@ -4,9 +4,9 @@
 
 # Play [2.4 | 2.5 | 2.6] PDF module
 
-`play2-scala-pdf` is a Play! module to help generate PDF documents dynamically from Play! web application.
+`play2-scala-pdf` is a Play Framework module to help generate PDF documents dynamically from Play Framework web application.
 
-It simply renders Play! HTML and CSS-based view templates to PDF via [Flying Saucer library], which uses older, open-source version of iText for PDF generation.
+It simply renders Play Framework HTML and CSS-based view templates to PDF via [Flying Saucer library], which uses older, open-source version of iText for PDF generation.
 
 ### Supported Play Framework and Scala Versions
 
@@ -22,7 +22,7 @@ The supported Scala and Play versions as follows:
 
 If you are using Play Framework Java, check out [https://github.com/innoveit/play2-pdf](https://github.com/innoveit/play2-pdf).
 
-`play2-scala-pdf` is a fork of the project above with the aim to reduce the final distribution size for Play! Scala projects by rebasing the module to Play! Scala core (i.e. avoid including Play! Java additions in Play! Scala projects).
+`play2-scala-pdf` is a fork of the project above with the aim to reduce the final distribution size for Play Framework Scala projects by rebasing the module to Play Framework Scala core (i.e. avoid including Play Framework Java additions in Play Framework Scala projects).
 
 ## Installation
 
@@ -45,7 +45,7 @@ resolvers ++= Seq(
 
 ## Usage
 
-You can use a standard Play! Scala template like this one:
+You can use a standard Play Framework Scala template like this one:
 ``` html
 @(message: String)
 
@@ -79,7 +79,7 @@ Please observe the following constraints to avoid issues when using this module:
   - External assets such as images need to be loaded as base64-encoded string
   - External such as stylesheets will be loaded as per normal HTML page load
   
-*NOTE: If the specified URI is a path into Play! app classpath, the resource is loaded directly instead. See the above sample template for an example.*
+*NOTE: If the specified URI is a path into Play Framework app classpath, the resource is loaded directly instead. See the above sample template for an example.*
 
 Fonts can be loaded by invoking `PdfGenerator.loadLocalFonts` method. For example:
 
