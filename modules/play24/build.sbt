@@ -30,9 +30,9 @@ organization := "com.hhandoko"
 
 version := "3.0.0.P24-SNAPSHOT"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.12"
 
-crossScalaVersions := Seq("2.10.6", "2.11.8")
+crossScalaVersions := Seq("2.10.7", "2.11.12")
 
 libraryDependencies ++= Seq(
   // Apache Commons IO
