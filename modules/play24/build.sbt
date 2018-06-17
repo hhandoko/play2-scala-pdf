@@ -24,11 +24,13 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf"""
+import scala.io.Source
+
+name := """play24-scala-pdf"""
 
 organization := "com.hhandoko"
 
-version := "3.0.1.P24-SNAPSHOT"
+version := Source.fromFile("../../VERSION.txt").mkString.trim
 
 scalaVersion := "2.11.12"
 

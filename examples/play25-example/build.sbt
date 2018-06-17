@@ -24,9 +24,9 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
+name := """play25-scala-pdf-example"""
 
-version := "1.0.0.P25"
+version := "1.0.0"
 
 scalaVersion := "2.11.12"
 
