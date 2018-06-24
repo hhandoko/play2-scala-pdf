@@ -45,9 +45,11 @@ libraryDependencies ++= Seq(
   //   - http://jtidy.sourceforge.net/
   //   - https://github.com/flyingsaucerproject/flyingsaucer
   //   - https://about.validator.nu/htmlparser/
+  //   - https://jsoup.org/
   "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.1.12",
+  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.12",
   "nu.validator.htmlparser" % "htmlparser" % "1.4",
+  "org.jsoup" % "jsoup" % "1.11.3" % Test,
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play

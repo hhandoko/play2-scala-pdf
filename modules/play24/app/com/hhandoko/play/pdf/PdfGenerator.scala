@@ -33,7 +33,7 @@ import java.io._
 import scala.collection.mutable.ArrayBuffer
 
 import com.google.inject.Singleton
-import com.itextpdf.text.pdf.BaseFont
+import com.lowagie.text.pdf.BaseFont
 import nu.validator.htmlparser.dom.HtmlDocumentBuilder
 import org.apache.commons.io.{FilenameUtils, IOUtils}
 import org.w3c.tidy.Tidy

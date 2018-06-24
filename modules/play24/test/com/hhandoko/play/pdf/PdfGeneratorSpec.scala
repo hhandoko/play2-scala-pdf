@@ -29,22 +29,22 @@ package com.hhandoko.play.pdf
 import java.io.InputStream
 import scala.io.Source
 
-import com.itextpdf.text.pdf.PdfReader
-import com.itextpdf.text.pdf.parser.PdfTextExtractor
+import com.lowagie.text.pdf.PdfReader
+import com.lowagie.text.pdf.parser.PdfTextExtractor
+import org.jsoup.Jsoup
 import org.scalatestplus.play.{OneAppPerTest, PlaySpec}
 
-import play.api.Environment
 import play.twirl.api.Html
 
 class PdfGeneratorSpec extends PlaySpec with OneAppPerTest {
 
   val BASE_URL = "http://localhost:9001"
 
-  def env: Environment = app.injector.instanceOf[Environment]
-  def htmlStream: Option[InputStream] = env.resourceAsStream("example.html")
+  def htmlStream: Option[InputStream] = app.resourceAsStream("example.html")
   def htmlString: String = htmlStream.fold("") { Source.fromInputStream(_).getLines().mkString("\n") }
   def html: Html = Html(htmlString)
-  def gen = new PdfGenerator(env)
+  val gen = new PdfGenerator()
+  def clean(html: String): String = Jsoup.parse(html).text()
 
   "PdfGenerator" should {
 
@@ -55,39 +55,43 @@ class PdfGeneratorSpec extends PlaySpec with OneAppPerTest {
     "be able to create PDF given HTML string" in {
       val pdf = gen.toBytes(htmlString, BASE_URL, Nil)
       val reader = new PdfReader(pdf)
+      val extractor = new PdfTextExtractor(reader)
 
       assert(reader.getInfo.get("Author") === author)
       assert(reader.getInfo.get("Title") === title)
-      assert(PdfTextExtractor.getTextFromPage(reader, 1).contains(heading))
+      assert(clean(extractor.getTextFromPage(1)).contains(heading))
     }
 
     "be able to create PDF given HTML string and external font" in {
       val fonts = Seq("opensans-regular.ttf")
       val pdf = gen.toBytes(htmlString, BASE_URL, fonts)
       val reader = new PdfReader(pdf)
+      val extractor = new PdfTextExtractor(reader)
 
       assert(reader.getInfo.get("Author") === author)
       assert(reader.getInfo.get("Title") === title)
-      assert(PdfTextExtractor.getTextFromPage(reader, 1).contains(heading))
+      assert(clean(extractor.getTextFromPage(1)).contains(heading))
     }
 
     "be able to create PDF given Twirl HTML" in {
       val pdf = gen.toBytes(html, BASE_URL, Nil)
       val reader = new PdfReader(pdf)
+      val extractor = new PdfTextExtractor(reader)
 
       assert(reader.getInfo.get("Author") === author)
       assert(reader.getInfo.get("Title") === title)
-      assert(PdfTextExtractor.getTextFromPage(reader, 1).contains(heading))
+      assert(clean(extractor.getTextFromPage(1)).contains(heading))
     }
 
     "be able to create PDF given Twirl HTML and external font" in {
       val fonts = Seq("opensans-regular.ttf")
       val pdf = gen.toBytes(html, BASE_URL, fonts)
       val reader = new PdfReader(pdf)
+      val extractor = new PdfTextExtractor(reader)
 
       assert(reader.getInfo.get("Author") === author)
       assert(reader.getInfo.get("Title") === title)
-      assert(PdfTextExtractor.getTextFromPage(reader, 1).contains(heading))
+      assert(clean(extractor.getTextFromPage(1)).contains(heading))
     }
 
   }

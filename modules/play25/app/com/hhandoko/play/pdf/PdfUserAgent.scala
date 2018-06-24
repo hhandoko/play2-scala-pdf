@@ -31,7 +31,7 @@ package com.hhandoko.play.pdf
 
 import java.io._
 
-import com.itextpdf.text.Image
+import com.lowagie.text.Image
 import org.xhtmlrenderer.pdf.{ITextFSImage, ITextOutputDevice, ITextUserAgent}
 import org.xhtmlrenderer.resource.{CSSResource, ImageResource, XMLResource}
 
