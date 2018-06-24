@@ -24,15 +24,17 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf"""
+import scala.io.Source
+
+name := """play26-scala-pdf"""
 
 organization := "com.hhandoko"
 
-version := "3.0.1.P26-SNAPSHOT"
+version := Source.fromFile("../../VERSION.txt").mkString.trim
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.12.6"
 
-crossScalaVersions := Seq("2.11.12", "2.12.4")
+crossScalaVersions := Seq("2.11.12", "2.12.6")
 
 libraryDependencies ++= Seq(
   guice,
@@ -45,9 +47,11 @@ libraryDependencies ++= Seq(
   //   - http://jtidy.sourceforge.net/
   //   - https://github.com/flyingsaucerproject/flyingsaucer
   //   - https://about.validator.nu/htmlparser/
+  //   - https://jsoup.org/
   "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.1.12",
+  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.12",
   "nu.validator.htmlparser" % "htmlparser" % "1.4",
+  "org.jsoup" % "jsoup" % "1.11.3" % Test,
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play

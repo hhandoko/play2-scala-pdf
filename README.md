@@ -1,12 +1,12 @@
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Master Build Status](https://travis-ci.org/hhandoko/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/hhandoko/play2-scala-pdf)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play2-scala-pdf_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play2-scala-pdf_2.12)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play26-scala-pdf_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play26-scala-pdf_2.12)
 
 # Play [2.4 | 2.5 | 2.6] PDF module
 
 `play2-scala-pdf` is a Play Framework module to help generate PDF documents dynamically from Play Framework web application.
 
-It simply renders Play Framework HTML and CSS-based view templates to PDF via [Flying Saucer library], which uses older, open-source version of iText for PDF generation.
+It simply renders Play Framework HTML and CSS-based view templates to PDF via [Flying Saucer library], which uses [OpenPDF], an open-source LGPL and MPL version of an older fork of iText for PDF generation.
 
 ### Supported Play Framework and Scala Versions
 
@@ -26,11 +26,21 @@ If you are using Play Framework Java, check out [https://github.com/innoveit/pla
 
 ## Installation
 
+Create a PDF generator factory method in your application's Guice module:
+``` scala
+@Provides
+def providePdfGenerator(): PdfGenerator = {
+  val pdfGen = new PdfGenerator()
+  pdfGen.loadLocalFonts(Seq("fonts/opensans-regular.ttf"))
+  pdfGen
+}
+``` 
+
 Currently, the module is hosted at Maven Central Repository. Include the following lines in ```build.sbt```, then reload SBT to resolve and enable the module:
 ``` scala
 libraryDependencies ++= Seq(
   ...
-  "com.hhandoko" %% "play2-scala-pdf" % "3.0.0.P26" // Use `3.0.0.P25` for Play 2.5.x apps or `3.0.0.P24 for Play 2.4.x apps
+  "com.hhandoko" %% "play26-scala-pdf" % "4.0.0" // Use `play25-scala-pdf` for Play 2.5.x apps or `play24-scala-pdf` for Play 2.4.x apps
 )
 ```
 
@@ -144,5 +154,6 @@ https://github.com/hhandoko/play2-scala-pdf/releases
 [fork-and-pull]: https://help.github.com/articles/using-pull-requests
 [LICENSE]: LICENSE
 [Lightbend]: https://www.lightbend.com/company
+[OpenPDF]: https://github.com/LibrePDF/OpenPDF
 [Open Sans Google Fonts]: https://fonts.google.com/specimen/Open+Sans
 [Steve Matteson]: https://twitter.com/@SteveMatteson1

@@ -24,13 +24,13 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-name := """play2-scala-pdf-example"""
+name := """play26-scala-pdf-example"""
 
-version := "1.0.0.P26"
+version := "1.0.0"
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.12.6"
 
-crossScalaVersions := Seq("2.11.12", "2.12.4")
+crossScalaVersions := Seq("2.11.12", "2.12.6")
 
 libraryDependencies ++= Seq(
   guice,
