@@ -53,7 +53,11 @@ libraryDependencies ++= Seq(
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus" %% "play" % "1.4.0" % Test
+  "org.scalatestplus" %% "play" % "1.4.0" % Test,
+
+  // Required in Travis CI?
+  // See: https://github.com/sbt/sbt/issues/4069
+  "com.twelvemonkeys.imageio" % "imageio-core" % "3.4.1" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
