@@ -70,6 +70,9 @@ class PdfGeneratorSpec extends PlaySpec with GuiceOneAppPerTest {
       val reader = new PdfReader(pdf)
       val extractor = new PdfTextExtractor(reader)
 
+      println(extractor.getTextFromPage(1))
+      println(clean(extractor.getTextFromPage(1)))
+
       assert(reader.getInfo.get("Author") === author)
       assert(reader.getInfo.get("Title") === title)
       assert(clean(extractor.getTextFromPage(1)).contains(heading))
@@ -90,6 +93,9 @@ class PdfGeneratorSpec extends PlaySpec with GuiceOneAppPerTest {
       val pdf = gen.toBytes(html, BASE_URL, fonts)
       val reader = new PdfReader(pdf)
       val extractor = new PdfTextExtractor(reader)
+
+      println(extractor.getTextFromPage(1))
+      println(clean(extractor.getTextFromPage(1)))
 
       assert(reader.getInfo.get("Author") === author)
       assert(reader.getInfo.get("Title") === title)
