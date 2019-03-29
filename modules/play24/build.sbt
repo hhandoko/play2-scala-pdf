@@ -47,13 +47,17 @@ libraryDependencies ++= Seq(
   //   - https://about.validator.nu/htmlparser/
   //   - https://jsoup.org/
   "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.12",
+  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.14",
   "nu.validator.htmlparser" % "htmlparser" % "1.4",
   "org.jsoup" % "jsoup" % "1.11.3" % Test,
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus" %% "play" % "1.4.0" % Test
+  "org.scalatestplus" %% "play" % "1.4.0" % Test,
+
+  // Required in Travis CI?
+  // See: https://github.com/sbt/sbt/issues/4069
+  "com.twelvemonkeys.imageio" % "imageio-core" % "3.4.1" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
