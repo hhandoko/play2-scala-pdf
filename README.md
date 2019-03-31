@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Master Build Status](https://travis-ci.org/hhandoko/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/hhandoko/play2-scala-pdf)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play26-scala-pdf_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play26-scala-pdf_2.12)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play27-scala-pdf_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play27-scala-pdf_2.12)
 
 # Play [2.4 to 2.7] PDF module
 
