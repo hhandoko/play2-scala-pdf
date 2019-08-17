@@ -1,6 +1,6 @@
 language: scala
-jdk: oraclejdk8
-scala: 2.12.2
+jdk: openjdk8
+scala: 2.12.9
 env:
   global:
     - secure: "T284bq+EzkaCQOH12GyVt/WV3XOpr8JofrNwDQfImxE3PUjPPeTNrVId30uJmraunEIxEth1qxI+TL4WLjVGtKiNJTgsWq8OFaZy9eCD/hHtJV6vbQzEx2kUuJVROJjrxrpV+PqFnOYNpeyocrahwxKlvyksDWFnXMgPLJgzoqNMUamlZs9ZM+H7YnA3Sg81dYIHZDOmku0k36WZUKw6pF2kKv0MzLdrn9F9JpNX+oAH82yP4OCfoTInOHMcGBPqpebH1atxOeOQ/L4h17okpPWkyDsbK0OQzz2CbuaQDkfE++nDinFpU7R6IOLYNl29DGQATJX29bpfD7xOUWD7Z08Dx87sld+gEeQquECCoOHYDjH63/DmHrjVSXh9t94DptJPmrXQeI0kxAd5YNpoAuA41ilyJCJrRMeAoThxBwrWvxrkUvESTDLFbqlUd+ZYaP+nNoNPSYkFS3wYQCkOxUJ8zUSeJ8vkoPZwW49igRubUafBIbnd7ybU2AWx7hK1yzKzMe5Jlgiv/13gOBlAqSjfnQnh86HYpxpP1RoeMkpRQB5DGsi7C0Y5npG7eNCO5aeh2Uw6A3eIU4SjY3T7vVARswx0WKMS+Z72Euu7FGw5BuFhwRnP1H6CuBiC342eQIp3bS6VP4BxWyL7lpVgSYk806/LWi2xp4UGnnUzST4="
@@ -9,5 +9,6 @@ env:
     - MODULE_DIR=modules/play24
     - MODULE_DIR=modules/play25
     - MODULE_DIR=modules/play26
+    - MODULE_DIR=modules/play27
 script: cd $MODULE_DIR && ../../scripts/test.sh
 after_success: test $TRAVIS_BRANCH = "master" && ../../scripts/publish.sh
