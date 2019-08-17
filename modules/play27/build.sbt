@@ -32,9 +32,9 @@ organization := "com.hhandoko"
 
 version := Source.fromFile("../../VERSION.txt").mkString.trim
 
-scalaVersion := "2.12.9"
+scalaVersion := "2.13.0"
 
-crossScalaVersions := Seq("2.11.12", "2.12.9")
+crossScalaVersions := Seq("2.11.12", "2.12.9", "2.13.0")
 
 libraryDependencies ++= Seq(
   guice,
@@ -55,7 +55,7 @@ libraryDependencies ++= Seq(
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.1" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

@@ -118,8 +118,9 @@ class PdfGenerator(env: Environment, val xhtml: Boolean = false) {
    * @param fonts the external / additional fonts to load.
    * @return Generated PDF result (with "application/pdf" MIME type).
    */
-  def ok(html: Html, documentBaseUrl: String, fonts: Seq[String] = defaultFonts): Result = {
-    Results.Ok(toBytes(parseString(html), documentBaseUrl, fonts)).as("application/pdf")
+  def ok(html: Html, documentBaseUrl: String, fonts: Seq[String] = Nil): Result = {
+    val loadedFonts = defaultIfEmpty(fonts)
+    Results.Ok(toBytes(parseString(html), documentBaseUrl, loadedFonts)).as("application/pdf")
   }
 
   /**
@@ -133,7 +134,7 @@ class PdfGenerator(env: Environment, val xhtml: Boolean = false) {
   def toBytes(html: Html, documentBaseUrl: String, fonts: Seq[String]): Array[Byte] = {
     // NOTE: Use default value assignment in method body,
     //       as Scala compiler does not like overloaded methods with default params
-    val loadedFonts = if (fonts.isEmpty) defaultFonts else fonts
+    val loadedFonts = defaultIfEmpty(fonts)
     toBytes(parseString(html), documentBaseUrl, loadedFonts)
   }
 
@@ -148,7 +149,7 @@ class PdfGenerator(env: Environment, val xhtml: Boolean = false) {
   def toBytes(string: String, documentBaseUrl: String, fonts: Seq[String]): Array[Byte] = {
     // NOTE: Use default value assignment in method body,
     //       as Scala compiler does not like overloaded methods with default params
-    val loadedFonts = if (fonts.isEmpty) defaultFonts else fonts
+    val loadedFonts = defaultIfEmpty(fonts)
     val output = new ByteArrayOutputStream()
     toStream(output)(string, documentBaseUrl, loadedFonts)
     output.toByteArray
@@ -162,10 +163,11 @@ class PdfGenerator(env: Environment, val xhtml: Boolean = false) {
    * @param documentBaseUrl the document / page base URL.
    * @param fonts the external / additional fonts to load.
    */
-  def toStream(output: OutputStream)(string: String, documentBaseUrl: String, fonts: Seq[String] = defaultFonts): Unit = {
+  def toStream(output: OutputStream)(string: String, documentBaseUrl: String, fonts: Seq[String] = Nil): Unit = {
+    val loadedFonts = defaultIfEmpty(fonts)
     val input = new ByteArrayInputStream(string.getBytes("UTF-8"))
     val renderer = new ITextRenderer()
-    fonts.foreach { font => renderer.getFontResolver.addFont(font, BaseFont.IDENTITY_H, BaseFont.EMBEDDED) }
+    loadedFonts.foreach { font => renderer.getFontResolver.addFont(font, BaseFont.IDENTITY_H, BaseFont.EMBEDDED) }
     val userAgent = new PdfUserAgent(env, renderer.getOutputDevice)
     userAgent.setSharedContext(renderer.getSharedContext)
     renderer.getSharedContext.setUserAgentCallback(userAgent)
@@ -189,5 +191,16 @@ class PdfGenerator(env: Environment, val xhtml: Boolean = false) {
       writer.getBuffer.toString
     } else html.body
   }
+
+  /**
+   * Use default fonts if given fonts list is empty.
+   *
+   * @note `defaultFonts.toSeq` is used as a universal conversion method due to `Seq` predef changes from mutable to
+   *       immutable collections.
+   * @param fonts the fonts to load.
+   * @return Fonts to load or default fonts as fallback.
+   */
+  private[this] def defaultIfEmpty(fonts: Seq[String]): Seq[String] =
+    if (fonts.isEmpty) defaultFonts.toSeq else fonts
 
 }
