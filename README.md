@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Master Build Status](https://travis-ci.org/hhandoko/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/hhandoko/play2-scala-pdf)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play27-scala-pdf_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play27-scala-pdf_2.12)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play27-scala-pdf_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play27-scala-pdf_2.13)
 
 # Play [2.4 to 2.7] PDF module
 
@@ -41,7 +41,7 @@ Currently, the module is hosted at Maven Central Repository. Include the followi
 ``` scala
 libraryDependencies ++= Seq(
   ...
-  "com.hhandoko" %% "play27-scala-pdf" % "4.1.0" // Use `play26-scala-pdf` for Play 2.6.x apps, etc.
+  "com.hhandoko" %% "play27-scala-pdf" % "4.2.0" // Use `play26-scala-pdf` for Play 2.6.x apps, etc.
 )
 ```
 
