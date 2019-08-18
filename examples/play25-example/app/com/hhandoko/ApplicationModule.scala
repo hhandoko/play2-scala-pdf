@@ -36,7 +36,7 @@ import com.hhandoko.play.pdf.PdfGenerator
 class ApplicationModule extends AbstractModule with ScalaModule {
 
   /** Module configuration + binding */
-  def configure(): Unit = {}
+  override def configure(): Unit = {}
 
   /**
    * Provides PDF generator implementation.

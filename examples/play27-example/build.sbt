@@ -36,7 +36,7 @@ libraryDependencies ++= Seq(
   guice,
 
   // Utilities
-  "net.codingwell" %% "scala-guice" % "4.1.0",
+  "net.codingwell" %% "scala-guice" % "4.2.6",
 
   // WebJars
   "org.webjars.bower" % "jquery" % "1.12.4",
@@ -44,7 +44,7 @@ libraryDependencies ++= Seq(
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.1" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3" % Test
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

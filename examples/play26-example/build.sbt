@@ -36,7 +36,7 @@ libraryDependencies ++= Seq(
   guice,
 
   // Utilities
-  "net.codingwell" %% "scala-guice" % "4.1.0",
+  "net.codingwell" %% "scala-guice" % "4.2.6",
 
   // WebJars
   "org.webjars.bower" % "jquery" % "1.12.4",
