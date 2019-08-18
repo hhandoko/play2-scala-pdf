@@ -34,7 +34,7 @@ crossScalaVersions := Seq("2.10.7", "2.11.12")
 
 libraryDependencies ++= Seq(
   // Utilities
-  "net.codingwell" %% "scala-guice" % "4.1.0",
+  "net.codingwell" %% "scala-guice" % "4.1.1",
 
   // WebJars
   "org.webjars.bower" % "jquery" % "1.12.4",

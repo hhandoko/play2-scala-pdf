@@ -114,7 +114,7 @@ class PdfUserAgent(env: Environment, outputDevice: ITextOutputDevice) extends IT
    */
   private def toByteArray(stream: InputStream): Array[Byte] = {
     val buffer = new BufferedInputStream(stream)
-    Stream.continually(buffer.read).takeWhile(-1 !=).map(_.toByte).toArray
+    Stream.continually(buffer.read).takeWhile(-1 != _).map(_.toByte).toArray
   }
 
   /**

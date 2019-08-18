@@ -12,12 +12,12 @@ It simply renders Play Framework HTML and CSS-based view templates to PDF via [F
 
 The supported Scala and Play versions as follows:
 
-|           | Scala 2.10 | Scala 2.11 | Scala 2.12 |
-| --------- |:----------:|:----------:|:----------:|
-| Play 2.4  | `YES`      | `YES`      |            |
-| Play 2.5  |            | `YES`      |            |
-| Play 2.6  |            | `YES`      | `YES`      |
-| Play 2.7  |            | `YES`      | `YES`      |
+|           | Scala 2.10 | Scala 2.11 | Scala 2.12 | Scala 2.13 |
+| --------- |:----------:|:----------:|:----------:|:----------:|
+| Play 2.4  | `YES`      | `YES`      |            |            |
+| Play 2.5  |            | `YES`      |            |            |
+| Play 2.6  |            | `YES`      | `YES`      |            |
+| Play 2.7  |            | `YES`      | `YES`      | `YES`      |
 
 ### Play Framework Java
 
@@ -35,7 +35,7 @@ def providePdfGenerator(): PdfGenerator = {
   pdfGen.loadLocalFonts(Seq("fonts/opensans-regular.ttf"))
   pdfGen
 }
-``` 
+```
 
 Currently, the module is hosted at Maven Central Repository. Include the following lines in ```build.sbt```, then reload SBT to resolve and enable the module:
 ``` scala
@@ -52,7 +52,7 @@ resolvers ++= Seq(
 )
 ```
 
-*NOTE: If you are using an IDE like Eclipse, remember to re-generate your project files.* 
+*NOTE: If you are using an IDE like Eclipse, remember to re-generate your project files.*
 
 ## Usage
 
@@ -70,9 +70,9 @@ You can use a standard Play Framework Scala template like this one:
 Then this template, after having imported ```com.hhandoko.play.pdf.PdfGenerator```, can simply be rendered as:
 ``` scala
 class HomeController @Inject() (pdfGen: PdfGenerator) extends Controller {
-    
+
     def examplePdf = Action { pdfGen.ok(views.html.example(), "http://localhost:9000") }
-    
+
 }
 ```
 
@@ -89,7 +89,7 @@ Please observe the following constraints to avoid issues when using this module:
   - Non-system fonts must be loaded explicitly (see below for example)
   - External assets such as images need to be loaded as base64-encoded string
   - External such as stylesheets will be loaded as per normal HTML page load
-  
+
 *NOTE: If the specified URI is a path into Play Framework app classpath, the resource is loaded directly instead. See the above sample template for an example.*
 
 Fonts can be loaded by invoking `PdfGenerator.loadLocalFonts` method. For example:

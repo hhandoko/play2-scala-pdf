@@ -32,9 +32,9 @@ organization := "com.hhandoko"
 
 version := Source.fromFile("../../VERSION.txt").mkString.trim
 
-scalaVersion := "2.12.8"
+scalaVersion := "2.12.9"
 
-crossScalaVersions := Seq("2.11.12", "2.12.8")
+crossScalaVersions := Seq("2.11.12", "2.12.9")
 
 libraryDependencies ++= Seq(
   guice,
