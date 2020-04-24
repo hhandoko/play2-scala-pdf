@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : sonatype.sbt
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,40 +24,7 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-import scala.io.Source
-
-name := """play27-scala-pdf"""
-
-organization := "com.hhandoko"
-
-version := Source.fromFile("../../VERSION.txt").mkString.trim
-
-scalaVersion := "2.13.0"
-
-crossScalaVersions := Seq("2.11.12", "2.12.9", "2.13.0")
-
-libraryDependencies ++= Seq(
-  guice,
-
-  // Apache Commons IO
-  //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.6",
-
-  // HTML parsing + PDF generation
-  //   - http://jtidy.sourceforge.net/
-  //   - https://github.com/flyingsaucerproject/flyingsaucer
-  //   - https://about.validator.nu/htmlparser/
-  //   - https://jsoup.org/
-  "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.14",
-  "nu.validator.htmlparser" % "htmlparser" % "1.4",
-  "org.jsoup" % "jsoup" % "1.11.3" % Test,
-
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3" % Test
-)
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-lazy val play27 = (project in file(".")).enablePlugins(PlayScala)
+credentials ++= (for {
+  username <- Option(System.getenv().get("SONATYPE_USERNAME"))
+  password <- Option(System.getenv().get("SONATYPE_PASSWORD"))
+} yield Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", username, password)).toSeq
