@@ -26,15 +26,15 @@
  */
 import scala.io.Source
 
-name := """play27-scala-pdf"""
+name := """play28-scala-pdf"""
 
 organization := "com.hhandoko"
 
 version := Source.fromFile("../../VERSION.txt").mkString.trim
 
-scalaVersion := "2.13.0"
+scalaVersion := "2.13.2"
 
-crossScalaVersions := Seq("2.11.12", "2.12.9", "2.13.0")
+crossScalaVersions := Seq("2.11.12", "2.12.9", "2.13.2")
 
 libraryDependencies ++= Seq(
   guice,
@@ -60,4 +60,4 @@ libraryDependencies ++= Seq(
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
-lazy val play27 = (project in file(".")).enablePlugins(PlayScala)
+lazy val play268 = (project in file(".")).enablePlugins(PlayScala)

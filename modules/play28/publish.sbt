@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : publish.sbt
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,40 +24,38 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-import scala.io.Source
+publishMavenStyle := true
 
-name := """play27-scala-pdf"""
+pomIncludeRepository := { _ => false }
 
-organization := "com.hhandoko"
+sonatypeProfileName := "com.hhandoko"
 
-version := Source.fromFile("../../VERSION.txt").mkString.trim
+publishTo := {
+  val nexus = "https://oss.sonatype.org/"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
 
-scalaVersion := "2.13.0"
-
-crossScalaVersions := Seq("2.11.12", "2.12.9", "2.13.0")
-
-libraryDependencies ++= Seq(
-  guice,
-
-  // Apache Commons IO
-  //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.6",
-
-  // HTML parsing + PDF generation
-  //   - http://jtidy.sourceforge.net/
-  //   - https://github.com/flyingsaucerproject/flyingsaucer
-  //   - https://about.validator.nu/htmlparser/
-  //   - https://jsoup.org/
-  "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.14",
-  "nu.validator.htmlparser" % "htmlparser" % "1.4",
-  "org.jsoup" % "jsoup" % "1.11.3" % Test,
-
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3" % Test
+pomExtra in Global := (
+  <url>https://github.com/hhandoko/play2-scala-pdf</url>
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://raw.githubusercontent.com/hhandoko/play2-scala-pdf/master/LICENSE</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>git@github.com:hhandoko/play2-scala-pdf.git</url>
+    <connection>scm:git:git@github.com:hhandoko/play2-scala-pdf.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>hhandoko</id>
+      <name>Herdy Handoko</name>
+      <url>http://github.com/hhandoko</url>
+    </developer>
+  </developers>
 )
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-lazy val play27 = (project in file(".")).enablePlugins(PlayScala)
