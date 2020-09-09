@@ -2,7 +2,7 @@
 [![Master Build Status](https://travis-ci.org/hhandoko/play2-scala-pdf.svg?branch=master)](https://travis-ci.org/hhandoko/play2-scala-pdf)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play27-scala-pdf_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.hhandoko/play27-scala-pdf_2.13)
 
-# Play [2.4 to 2.7] PDF module
+# Play [2.4 to 2.8] PDF module
 
 `play2-scala-pdf` is a Play Framework module to help generate PDF documents dynamically from Play Framework web application.
 
@@ -18,6 +18,7 @@ The supported Scala and Play versions as follows:
 | Play 2.5  |            | `YES`      |            |            |
 | Play 2.6  |            | `YES`      | `YES`      |            |
 | Play 2.7  |            | `YES`      | `YES`      | `YES`      |
+| Play 2.8  |            |            | `YES`      | `YES`      |
 
 ### Play Framework Java
 
@@ -119,7 +120,7 @@ Please read [CONTRIBUTING] for more details.
 The MIT License (MIT)
 
 Original   - Copyright (c) 2014 Jöerg Viola, Marco Sinigaglia
-Derivative - Copyright (c) 2016 - 2019 play2-scala-pdf Contributors
+Derivative - Copyright (c) 2016 - 2020 play2-scala-pdf Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

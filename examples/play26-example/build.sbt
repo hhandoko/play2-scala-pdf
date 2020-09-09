@@ -4,7 +4,7 @@
  *   The MIT License (MIT)
  *
  *   Original   - Copyright (c) 2014 Jöerg Viola, Marco Sinigaglia
- *   Derivative - Copyright (c) 2016 - 2019 play2-scala-pdf Contributors
+ *   Derivative - Copyright (c) 2016 - 2020 play2-scala-pdf Contributors
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
  *   of this software and associated documentation files (the "Software"), to deal
@@ -28,9 +28,9 @@ name := """play26-scala-pdf-example"""
 
 version := "1.0.0"
 
-scalaVersion := "2.12.9"
+scalaVersion := "2.12.12"
 
-crossScalaVersions := Seq("2.11.12", "2.12.9")
+crossScalaVersions := Seq("2.11.12", "2.12.12")
 
 libraryDependencies ++= Seq(
   guice,
