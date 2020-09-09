@@ -28,9 +28,9 @@ name := """play27-scala-pdf-example"""
 
 version := "1.0.0"
 
-scalaVersion := "2.13.0"
+scalaVersion := "2.13.3"
 
-crossScalaVersions := Seq("2.11.12", "2.12.9", "2.13.0")
+crossScalaVersions := Seq("2.11.12", "2.12.12", "2.13.3")
 
 libraryDependencies ++= Seq(
   guice,

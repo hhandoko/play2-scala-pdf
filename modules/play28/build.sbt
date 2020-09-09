@@ -32,9 +32,9 @@ organization := "com.hhandoko"
 
 version := Source.fromFile("../../VERSION.txt").mkString.trim
 
-scalaVersion := "2.13.2"
+scalaVersion := "2.13.3"
 
-crossScalaVersions := Seq("2.11.12", "2.12.9", "2.13.2")
+crossScalaVersions := Seq("2.12.12", "2.13.3")
 
 libraryDependencies ++= Seq(
   guice,
@@ -60,4 +60,4 @@ libraryDependencies ++= Seq(
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
-lazy val play268 = (project in file(".")).enablePlugins(PlayScala)
+lazy val play28 = (project in file(".")).enablePlugins(PlayScala)
