@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : HomeController.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,44 +24,45 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-import scala.io.Source
+package com.hhandoko.controllers
 
-name := """play28-scala-pdf"""
+import javax.inject._
 
-organization := "com.hhandoko"
+import play.api.Configuration
+import play.api.mvc._
 
-version := Source.fromFile("../../VERSION.txt").mkString.trim
+import com.hhandoko.play.pdf.PdfGenerator
 
-scalaVersion := "2.13.3"
+/**
+ * Home controller.
+ *
+ * @param config the application configuration
+ * @param pdfGen the PDF generator implementation.
+ */
+@Singleton
+class HomeController @Inject()(val controllerComponents: ControllerComponents, config: Configuration, pdfGen: PdfGenerator) extends BaseController {
 
-crossScalaVersions := Seq("2.12.12", "2.13.3")
+  val BASE_URL = config.get[Option[String]]("application.base_url").getOrElse("http://localhost:9000")
 
-libraryDependencies ++= Seq(
-  guice,
+  /**
+   * Returns the homepage ('/').
+   *
+   * @return Homepage.
+   */
+  def index = Action { Ok(views.html.index()) }
 
-  // Scala 2.13 Collection compatibility
-  //   - https://github.com/scala/scala-collection-compat
-  "org.scala-lang.modules" %% "scala-collection-compat" % "2.1.6",
+  /**
+   * Returns the example page as HTML ('/example').
+   *
+   * @return Example page.
+   */
+  def exampleHtml = Action { Ok(views.html.example() )}
 
-  // Apache Commons IO
-  //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.6",
+  /**
+   * Returns the example page as PDF document ('/example.pdf').
+   *
+   * @return Example page as PDF.
+   */
+  def examplePdf = Action { pdfGen.ok(views.html.example(), BASE_URL) }
 
-  // HTML parsing + PDF generation
-  //   - http://jtidy.sourceforge.net/
-  //   - https://github.com/flyingsaucerproject/flyingsaucer
-  //   - https://about.validator.nu/htmlparser/
-  //   - https://jsoup.org/
-  "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.14",
-  "nu.validator.htmlparser" % "htmlparser" % "1.4",
-  "org.jsoup" % "jsoup" % "1.11.3" % Test,
-
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
-)
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-lazy val play28 = (project in file(".")).enablePlugins(PlayScala)
+}

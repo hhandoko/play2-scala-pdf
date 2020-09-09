@@ -24,13 +24,9 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-import scala.io.Source
+name := """play28-scala-pdf-example"""
 
-name := """play28-scala-pdf"""
-
-organization := "com.hhandoko"
-
-version := Source.fromFile("../../VERSION.txt").mkString.trim
+version := "1.0.0"
 
 scalaVersion := "2.13.3"
 
@@ -39,29 +35,26 @@ crossScalaVersions := Seq("2.12.12", "2.13.3")
 libraryDependencies ++= Seq(
   guice,
 
-  // Scala 2.13 Collection compatibility
-  //   - https://github.com/scala/scala-collection-compat
-  "org.scala-lang.modules" %% "scala-collection-compat" % "2.1.6",
+  // Utilities
+  "net.codingwell" %% "scala-guice" % "4.2.6",
 
-  // Apache Commons IO
-  //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.6",
-
-  // HTML parsing + PDF generation
-  //   - http://jtidy.sourceforge.net/
-  //   - https://github.com/flyingsaucerproject/flyingsaucer
-  //   - https://about.validator.nu/htmlparser/
-  //   - https://jsoup.org/
-  "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.14",
-  "nu.validator.htmlparser" % "htmlparser" % "1.4",
-  "org.jsoup" % "jsoup" % "1.11.3" % Test,
+  // WebJars
+  "org.webjars.bower" % "jquery" % "1.12.4",
+  "org.webjars.bower" % "bootstrap" % "3.3.7",
 
   // ScalaTest + Play plugin
   //   - http://www.scalatest.org/plus/play
   "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
 )
 
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+routesGenerator := InjectedRoutesGenerator
 
-lazy val play28 = (project in file(".")).enablePlugins(PlayScala)
+// Adds additional packages into Twirl
+// TwirlKeys.templateImports += "com.hhandoko.play.pdf.controllers._"
+
+// Adds additional packages into conf/routes
+// play.sbt.routes.RoutesKeys.routesImport += "com.hhandoko.play.pdf.binders._"
+
+lazy val play28 = RootProject(file("../../modules/play28"))
+
+lazy val play28Ex = (project in file(".")).enablePlugins(PlayScala).dependsOn(play28)

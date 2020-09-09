@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : ApplicationModule.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,44 +24,31 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-import scala.io.Source
+package com.hhandoko
 
-name := """play28-scala-pdf"""
+import com.google.inject.{AbstractModule, Provides}
+import net.codingwell.scalaguice.ScalaModule
 
-organization := "com.hhandoko"
+import _root_.play.api.Environment
 
-version := Source.fromFile("../../VERSION.txt").mkString.trim
+import com.hhandoko.play.pdf.PdfGenerator
 
-scalaVersion := "2.13.3"
+class ApplicationModule extends AbstractModule with ScalaModule {
 
-crossScalaVersions := Seq("2.12.12", "2.13.3")
+  /** Module configuration + binding */
+  override def configure(): Unit = {}
 
-libraryDependencies ++= Seq(
-  guice,
+  /**
+   * Provides PDF generator implementation.
+   *
+   * @param env The current Play app Environment context.
+   * @return PDF generator implementation.
+   */
+  @Provides
+  def providePdfGenerator(env: Environment): PdfGenerator = {
+    val pdfGen = new PdfGenerator(env)
+    pdfGen.loadLocalFonts(Seq("fonts/opensans-regular.ttf"))
+    pdfGen
+  }
 
-  // Scala 2.13 Collection compatibility
-  //   - https://github.com/scala/scala-collection-compat
-  "org.scala-lang.modules" %% "scala-collection-compat" % "2.1.6",
-
-  // Apache Commons IO
-  //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.6",
-
-  // HTML parsing + PDF generation
-  //   - http://jtidy.sourceforge.net/
-  //   - https://github.com/flyingsaucerproject/flyingsaucer
-  //   - https://about.validator.nu/htmlparser/
-  //   - https://jsoup.org/
-  "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.14",
-  "nu.validator.htmlparser" % "htmlparser" % "1.4",
-  "org.jsoup" % "jsoup" % "1.11.3" % Test,
-
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
-)
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-lazy val play28 = (project in file(".")).enablePlugins(PlayScala)
+}
