@@ -47,6 +47,8 @@ libraryDependencies ++= Seq(
   "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
 )
 
+routesGenerator := InjectedRoutesGenerator
+
 // Adds additional packages into Twirl
 // TwirlKeys.templateImports += "com.hhandoko.play.pdf.controllers._"
 
