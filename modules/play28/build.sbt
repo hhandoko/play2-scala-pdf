@@ -32,7 +32,7 @@ organization := "com.hhandoko"
 
 version := Source.fromFile("../../VERSION.txt").mkString.trim
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.13.3"
 
 crossScalaVersions := Seq("2.12.12", "2.13.3")
 
