@@ -32,12 +32,16 @@ organization := "com.hhandoko"
 
 version := Source.fromFile("../../VERSION.txt").mkString.trim
 
-scalaVersion := "2.13.3"
+scalaVersion := "2.12.2"
 
 crossScalaVersions := Seq("2.12.12", "2.13.3")
 
 libraryDependencies ++= Seq(
   guice,
+
+  // Scala 2.13 Collection compatibility
+  //   - https://github.com/scala/scala-collection-compat
+  "org.scala-lang.modules" %% "scala-collection-compat" % "2.1.6",
 
   // Apache Commons IO
   //   - https://commons.apache.org/proper/commons-io/

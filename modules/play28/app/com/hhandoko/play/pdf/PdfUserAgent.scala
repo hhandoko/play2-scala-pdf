@@ -30,6 +30,7 @@
 package com.hhandoko.play.pdf
 
 import java.io._
+import scala.collection.compat.immutable.LazyList
 
 import com.lowagie.text.Image
 import org.xhtmlrenderer.pdf.{ITextFSImage, ITextOutputDevice, ITextUserAgent}
