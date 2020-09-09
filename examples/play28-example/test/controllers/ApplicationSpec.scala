@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : ApplicationSpec.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,44 +24,42 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-import scala.io.Source
 
-name := """play28-scala-pdf"""
+class ApplicationSpec extends PlaySpec with GuiceOneAppPerTest {
 
-organization := "com.hhandoko"
+  "Routes" should {
 
-version := Source.fromFile("../../VERSION.txt").mkString.trim
+    "send 404 on a bad request" in  {
+      route(app, FakeRequest(GET, "/boum")).map(status) mustBe Some(NOT_FOUND)
+    }
 
-scalaVersion := "2.13.3"
+  }
 
-crossScalaVersions := Seq("2.12.12", "2.13.3")
+  "HomeController" should {
 
-libraryDependencies ++= Seq(
-  guice,
+    "render the index page" in {
+      val Some(home) = route(app, FakeRequest(GET, routes.HomeController.index().url))
 
-  // Scala 2.13 Collection compatibility
-  //   - https://github.com/scala/scala-collection-compat
-  "org.scala-lang.modules" %% "scala-collection-compat" % "2.1.6",
+      status(home) mustBe OK
+      contentType(home) mustBe Some("text/html")
+      contentAsString(home) must include ("Hello, world!")
+    }
 
-  // Apache Commons IO
-  //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.6",
+    "render the example page as HTML" in {
+      val Some(exampleHtml) = route(app, FakeRequest(GET, routes.HomeController.exampleHtml().url))
 
-  // HTML parsing + PDF generation
-  //   - http://jtidy.sourceforge.net/
-  //   - https://github.com/flyingsaucerproject/flyingsaucer
-  //   - https://about.validator.nu/htmlparser/
-  //   - https://jsoup.org/
-  "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.14",
-  "nu.validator.htmlparser" % "htmlparser" % "1.4",
-  "org.jsoup" % "jsoup" % "1.11.3" % Test,
+      status(exampleHtml) mustBe OK
+      contentType(exampleHtml) mustBe Some("text/html")
+      contentAsString(exampleHtml) must include ("Example page for `play2-scala-pdf`")
+    }
 
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
-)
+    "render the example page as PDF" in {
+      val Some(exampleHtml) = route(app, FakeRequest(GET, routes.HomeController.examplePdf().url))
 
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+      status(exampleHtml) mustBe OK
+      contentType(exampleHtml) mustBe Some("application/pdf")
+    }
 
-lazy val play28 = (project in file(".")).enablePlugins(PlayScala)
+  }
+
+}

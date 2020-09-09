@@ -1,5 +1,5 @@
 /**
- * File     : build.sbt
+ * File     : IntegrationSpec.scala
  * License  :
  *   The MIT License (MIT)
  *
@@ -24,44 +24,31 @@
  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *   SOFTWARE.
  */
-import scala.io.Source
 
-name := """play28-scala-pdf"""
+class IntegrationSpec extends PlaySpec with GuiceOneServerPerTest with OneBrowserPerTest with HtmlUnitFactory {
 
-organization := "com.hhandoko"
+  val BASE_URL = "http://localhost:" + port
 
-version := Source.fromFile("../../VERSION.txt").mkString.trim
+  "Application" should {
 
-scalaVersion := "2.13.3"
+    "work from within a browser" in {
+      go to BASE_URL
 
-crossScalaVersions := Seq("2.12.12", "2.13.3")
+      pageSource must include ("Hello, world!")
+    }
 
-libraryDependencies ++= Seq(
-  guice,
+    "load example page as HTML" in {
+      go to (BASE_URL + routes.HomeController.exampleHtml().url)
 
-  // Scala 2.13 Collection compatibility
-  //   - https://github.com/scala/scala-collection-compat
-  "org.scala-lang.modules" %% "scala-collection-compat" % "2.1.6",
+      pageTitle must include ("`play2-scala-pdf` Example | Example Page")
+      pageSource must include ("Example page for `play2-scala-pdf`")
+    }
 
-  // Apache Commons IO
-  //   - https://commons.apache.org/proper/commons-io/
-  "commons-io" % "commons-io" % "2.6",
+    "load example page as PDF" in {
+      go to (BASE_URL + routes.HomeController.examplePdf().url)
 
-  // HTML parsing + PDF generation
-  //   - http://jtidy.sourceforge.net/
-  //   - https://github.com/flyingsaucerproject/flyingsaucer
-  //   - https://about.validator.nu/htmlparser/
-  //   - https://jsoup.org/
-  "net.sf.jtidy" % "jtidy" % "r938",
-  "org.xhtmlrenderer" % "flying-saucer-pdf-openpdf" % "9.1.14",
-  "nu.validator.htmlparser" % "htmlparser" % "1.4",
-  "org.jsoup" % "jsoup" % "1.11.3" % Test,
+      pageSource must include ("`play2-scala-pdf` Example | Example Page")
+    }
 
-  // ScalaTest + Play plugin
-  //   - http://www.scalatest.org/plus/play
-  "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
-)
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-lazy val play28 = (project in file(".")).enablePlugins(PlayScala)
+  }
+}
